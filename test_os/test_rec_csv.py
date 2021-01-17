@@ -1,7 +1,7 @@
 import csv
 with open('eggs.csv', 'a') as csvfile:
-    spamwriter = csv.writer(csvfile, delimiter=' ',
-                            quotechar=',', quoting=csv.QUOTE_MINIMAL)
+    spamwriter = csv.writer(csvfile, delimiter=',',
+                            quoting=csv.QUOTE_MINIMAL)
     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
     spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
     csvfile.close()
@@ -15,7 +15,7 @@ def csv_writer(data, path):
         writer = csv.writer(csv_file, delimiter=',')
         for line in data:
             writer.writerow(line)
-
+        csv_file.close()
 
 if __name__ == "__main__":
     data = ["first_name,last_name,city".split(","),
