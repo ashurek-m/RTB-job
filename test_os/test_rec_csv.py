@@ -11,7 +11,7 @@ def csv_writer(data, path):
     """
     Write data to a CSV file path
     """
-    with open(path, "w", newline='') as csv_file:
+    with open(path, "a", newline='') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         for line in data:
             writer.writerow(line)

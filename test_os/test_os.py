@@ -1,4 +1,14 @@
-import os, glob
+import os, glob,csv
+
+def csv_writer(data, path):
+    """
+    Write data to a CSV file path
+    """
+    with open(path, "a", newline='') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        for line in data:
+            writer.writerow(line)
+        csv_file.close()
 
 print(os.getcwd())
 list_dir = os.listdir(path=".")
@@ -21,4 +31,3 @@ for i in range(len(list_dir)):
 
 way_list = glob.glob('W:\Department - External Economic\ЗАКАЗЫ ВНУТРЕННИХ ПОТРЕБИТЕЛЕЙ\Consultations RTB-2018\**\*.xls', recursive=True)
 
-print(len(way_list))
