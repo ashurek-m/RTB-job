@@ -35,3 +35,4 @@ columns1.set_axis(["обозначение_детали",
 columns1.info()
 columns1.dropna(subset=['наименование_детали'], inplace=True)
 columns1.info()
+
