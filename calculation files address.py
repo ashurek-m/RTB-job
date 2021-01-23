@@ -18,5 +18,5 @@ def csv_writer(data, path):
 
 #encoding='utf-8'
 way_list = glob.glob('W:\Department - External Economic\ЗАКАЗЫ ВНУТРЕННИХ ПОТРЕБИТЕЛЕЙ\Consultations RTB-2018\**\*.xls', recursive=True)
-path = "address_file.csv"
+path = "address_file1.csv"
 csv_writer(spisok_spiskov(way_list), path)
