@@ -17,7 +17,7 @@ def csv_writer(data, path):
         csv_file.close()
 
 start_time = time.time()
-csv1 = pd.read_csv(r"C:\Python's_project\RTB-job\address_file.csv", names=['path'])
+csv1 = pd.read_csv(r"C:\Python's_project\RTB-job\address_file1.csv", names=['path'])
 clean_address = csv1.loc[:, 'path']
 sum1 = 0
 sum2 = 0
@@ -44,10 +44,8 @@ print(len(clean_address))
 print(f'открылось файлов {sum1}')
 print(f'не открылось файлов из-за отсуствия листа расчет {sum2}')
 print(f'не открылось по другой причине {sum3}')
-print("--- %s seconds ---" % (time.time() - start_time))
-path = "good_address_file.csv"
-path1 = "error_address_file.csv"
-print(type(good_list), type(csv))
+path = "good_address_file1.csv"
+path1 = "error_address_file1.csv"
 csv_writer(spisok_spiskov(good_list), path)
 csv_writer(spisok_spiskov(error_list), path1)
 print("--- %s seconds ---" % (time.time() - start_time))
