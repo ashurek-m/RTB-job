@@ -51,5 +51,14 @@ for i in range(len(unique_name_mat)):
         )
 
 print(f'уникальный словарь типоразмеров диаметров и толщин {len(unique_name_mat_and_diameter)}')
-csv_writer(unique_name_mat_and_diameter, 'уникальные_наименования_материалов2.csv')
+# csv_writer(unique_name_mat_and_diameter, 'уникальные_наименования_материалов2.csv')
+for i in range(len(unique_name_mat_and_diameter)):
+    isk = 'Д' and '16' and 'T'
+    if '16' in unique_name_mat_and_diameter[i]['name_material_payment'] and\
+        'Д' in unique_name_mat_and_diameter[i]['name_material_payment'] and\
+        'Т' in unique_name_mat_and_diameter[i]['name_material_payment'] and\
+        '20' in unique_name_mat_and_diameter[i]['estimated_size'] and\
+        't' in unique_name_mat_and_diameter[i]['type']:
+        print(unique_name_mat_and_diameter[i]['name_material_payment'])
+
 print("--- %s seconds ---" % (time.time() - start_time))
