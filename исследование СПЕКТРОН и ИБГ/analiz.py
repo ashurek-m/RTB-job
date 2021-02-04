@@ -15,25 +15,26 @@ def csv_writer(data, path):
 
 def search_by_client(address_file, client):
     file_csv = pd.read_csv(address_file, names=['path'])
-    name_client = []
+    file_adrress_client = []
     order_number_client = []
     address_file_client = []
     file = file_csv.loc[:, 'path']
     for i in range(len(file)):
-        if client in file[i]:
+        registr = file[i].title()
+        if client in registr:
             name_file = file[i].split("\\")
             try:
-                name_client.append(name_file)
                 num_order = int(name_file[-1][:5])
+                file_adrress_client.append(file[i])
                 order_number_client.append(num_order)
                 address_file_client.append(file[i])
             except ValueError:
                 continue
-    print(name_client[0], address_file_client[0])
-    print(order_number_client)
+    path = client + '.csv'
+    csv_writer(file_adrress_client, path)
 
 
 start_time = time.time()
-search_by_client('good_address_file.csv', 'IBG')
+search_by_client('good_address_file.csv', 'Ibg')
 
 print("--- %s seconds ---" % (time.time() - start_time))
