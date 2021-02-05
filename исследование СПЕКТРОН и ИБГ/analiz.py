@@ -29,7 +29,7 @@ def search_by_client(address_file, client):
                 address_file_client.append(file[i])
             except ValueError:
                 continue
-    print(name_client[0], address_file_client[0])
+    print(address_file_client[0])
     print(order_number_client)
 
 
