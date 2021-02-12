@@ -47,4 +47,24 @@ for i in range(matrix_b.shape[0]):
 output = atr_s == matrix_b.shape[0]
 # Выводим на экран результат проверки True - все совподает, False - не совподает, необходимо определить что не совподает
 print(output)
+counter = 0
+for i in range(len(df)):
+    payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
+    x_shape = payment_file.shape[1]
+    if x_shape == 94:
+        columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+        payment_file.drop(columns_drop, inplace=True, axis=1)
+        payment_file.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file.to_csv('file_zero.csv', mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file.to_csv('file_zero.csv', mode='a', encoding='utf-8', index=False, header=False)
+
+save_excel = pd.read_csv('file_zero.csv')
+writer = pd.ExcelWriter('file_zero.xlsx', engine='xlsxwriter')
+save_excel.to_excel(writer, sheet_name='welcome', index=False)
+writer.save()
+
+
 print("--- %s seconds ---" % (time.time() - start_time))

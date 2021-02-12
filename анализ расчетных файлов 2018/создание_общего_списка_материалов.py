@@ -45,7 +45,7 @@ for i in range(len(total)):
         columns4 = columns3.fillna(0)
         path = 'info_mat.csv'
         if i == 0:
-            columns4.to_csv(path, encoding='utf-8', index=False, header=True, mode='a')
+            columns4.to_csv(path, encoding='utf-8', index=False, header=True, mode='w')
         else:
             columns4.to_csv(path, encoding='utf-8', index=False, header=False, mode='a')
     except ValueError:
