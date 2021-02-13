@@ -16,6 +16,7 @@ start_time = time.time()
 # Для того что бы рассортировать схожие файлы по конфигурации
 address_file = pd.read_csv("Спектрон.csv", names=['path', 'order'])
 df = address_file.loc[:, 'path']
+df_order = address_file.loc[:, 'order']
 shape_list = []
 for i in range(len(df)):
     payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
@@ -50,16 +51,18 @@ print(output)
 counter = 0
 for i in range(len(df)):
     payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
+    payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+    payment_file_1 = payment_file_1.assign(order=df_order[i])
     x_shape = payment_file.shape[1]
-    if x_shape == 94:
+    if x_shape == shape_list[0]:
         columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
-        payment_file.drop(columns_drop, inplace=True, axis=1)
-        payment_file.dropna(subset=['Unnamed: 1'], inplace=True)
+        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
         if counter == 0:
             counter += 1
-            payment_file.to_csv('file_zero.csv', mode='w', encoding='utf-8', index=False, header=True)
+            payment_file_1.to_csv('file_zero.csv', mode='w', encoding='utf-8', index=False, header=True)
         else:
-            payment_file.to_csv('file_zero.csv', mode='a', encoding='utf-8', index=False, header=False)
+            payment_file_1.to_csv('file_zero.csv', mode='a', encoding='utf-8', index=False, header=False)
 
 save_excel = pd.read_csv('file_zero.csv')
 writer = pd.ExcelWriter('file_zero.xlsx', engine='xlsxwriter')
