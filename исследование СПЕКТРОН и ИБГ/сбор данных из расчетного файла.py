@@ -34,7 +34,7 @@ for i in range(len(df)):
     payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
     payment_file = payment_file.loc[:, 'Unnamed: 0': 'час']
     x_shape = payment_file.shape[1]
-    if x_shape == unique_shape[2]:
+    if x_shape == unique_shape[5]:
         print(df_order[i])
         list_columns.append(payment_file.columns)
 csv_writer(list_columns, 'columns.csv')
@@ -55,9 +55,9 @@ for i in range(matrix_b.shape[0]):
 output = atr_s == matrix_b.shape[0]
 # Выводим на экран результат проверки True - все совподает, False - не совподает, необходимо определить что не совподает
 print(output)
-counter = 0
-runner = 65
+runner = 60
 if runner == 66:
+    counter = 0
     for i in range(len(df)):
         payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
@@ -69,10 +69,15 @@ if runner == 66:
             payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
             if counter == 0:
                 counter += 1
-                payment_file_1.to_csv('file_zero.csv', mode='w', encoding='utf-8', index=False, header=True)
+                payment_file_1.to_csv('shape_66.csv', mode='w', encoding='utf-8', index=False, header=True)
             else:
-                payment_file_1.to_csv('file_zero.csv', mode='a', encoding='utf-8', index=False, header=False)
+                payment_file_1.to_csv('shape_66.csv', mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv('shape_66.csv')
+    writer = pd.ExcelWriter('shape_66.xlsx', engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
 elif runner == 62:
+    counter = 0
     for i in range(len(df)):
         payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
@@ -80,8 +85,17 @@ elif runner == 62:
         x_shape = payment_file_1.shape[1]
         if x_shape == unique_shape[1]:
             payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
-            payment_file_1.to_csv('file_zero.csv', mode='a', encoding='utf-8', index=False, header=False)
+            if counter == 0:
+                counter += 1
+                payment_file_1.to_csv('shape_62.csv', mode='w', encoding='utf-8', index=False, header=True)
+            else:
+                payment_file_1.to_csv('shape_62.csv', mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv('shape_62.csv')
+    writer = pd.ExcelWriter('shape_62.xlsx', engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
 elif runner == 65:
+    counter = 0
     for i in range(len(df)):
         payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
@@ -91,75 +105,72 @@ elif runner == 65:
             columns_drop = ['Unnamed: 7', 'Unnamed: 8']
             payment_file_1.drop(columns_drop, inplace=True, axis=1)
             payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
-            payment_file_1.to_csv('file_zero.csv', mode='a', encoding='utf-8', index=False, header=False)
-
-save_excel = pd.read_csv('file_zero.csv', names=['Unnamed: 1',
-                                                 'Unnamed: 1.1',
-                                                 'Unnamed: 1.2',
-                                                 'Unnamed: 2',
-                                                 'Unnamed: 3',
-                                                 '1',
-                                                 '1.1',
-                                                 'Unnamed: 6',
-                                                 'Unnamed: 9',
-                                                 'Unnamed: 10',
-                                                 'Материалы!A1',
-                                                 'Unnamed: 12',
-                                                 'г/см3',
-                                                 '$',
-                                                 'мм',
-                                                 'мм.1',
-                                                 'мм.2',
-                                                 'мм.3',
-                                                 'шт,м',
-                                                 'м2',
-                                                 'кг',
-                                                 '$.1',
-                                                 'Unnamed: 24',
-                                                 'Unnamed: 25',
-                                                 'Unnamed: 26',
-                                                 'Unnamed: 27',
-                                                 'Unnamed: 28',
-                                                 '3',
-                                                 'm2',
-                                                 'Unnamed: 31',
-                                                 '50',
-                                                 'price',
-                                                 "Т подг, мин",
-                                                 "Т маш, мин",
-                                                 "Т сум, ч",
-                                                 "Т подг, мин.1",
-                                                 "Т маш, мин.1",
-                                                 "Т сум, ч.1",
-                                                 "Т подг, мин.2",
-                                                 "Т маш, мин.2",
-                                                 "Т сум, ч.2",
-                                                 "Т подг, мин.3",
-                                                 "Т маш, мин.3",
-                                                 "Т сум, ч.3",
-                                                 "Т подг, мин.4",
-                                                 "Т маш, мин.4",
-                                                 "Т сум, ч.4",
-                                                 "Т подг, мин.5",
-                                                 "Т маш, мин.5",
-                                                 "Т сум, ч.5",
-                                                 "Т подг, мин.6",
-                                                 "Т маш, мин.6",
-                                                 "Т сум, ч.6",
-                                                 "Т подг, мин.7",
-                                                 "Т маш, мин.7",
-                                                 "Т сум, ч.7",
-                                                 "Т подг, мин.8",
-                                                 "Т маш, мин.8",
-                                                 "Т сум, ч.8",
-                                                 "Т подг, мин.9",
-                                                 "Т маш, мин.9",
-                                                 "Т сум, ч.9",
-                                                 'час'
-                                                 ])
-writer = pd.ExcelWriter('file_zero.xlsx', engine='xlsxwriter')
-save_excel.to_excel(writer, sheet_name='welcome', index=False)
-writer.save()
-
+            if counter == 0:
+                counter += 1
+                payment_file_1.to_csv('shape_65.csv', mode='w', encoding='utf-8', index=False, header=True)
+            else:
+                payment_file_1.to_csv('shape_65.csv', mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv('shape_65.csv')
+    writer = pd.ExcelWriter('shape_65.xlsx', engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+elif runner == 67:
+    counter = 0
+    for i in range(len(df)):
+        payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=df_order[i])
+        x_shape = payment_file_1.shape[1]
+        if x_shape == unique_shape[3]:
+            columns_drop = ['Unnamed: 10']
+            payment_file_1.drop(columns_drop, inplace=True, axis=1)
+            payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+            if counter == 0:
+                counter += 1
+                payment_file_1.to_csv('shape_67.csv', mode='w', encoding='utf-8', index=False, header=True)
+            else:
+                payment_file_1.to_csv('shape_67.csv', mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv('shape_67.csv')
+    writer = pd.ExcelWriter('shape_67.xlsx', engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+elif runner == 64:
+    counter = 0
+    for i in range(len(df)):
+        payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=df_order[i])
+        x_shape = payment_file_1.shape[1]
+        if x_shape == unique_shape[4]:
+            payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+            if counter == 0:
+                counter += 1
+                payment_file_1.to_csv('shape_64.csv', mode='w', encoding='utf-8', index=False, header=True)
+            else:
+                payment_file_1.to_csv('shape_64.csv', mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv('shape_64.csv')
+    writer = pd.ExcelWriter('shape_64.xlsx', engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+elif runner == 63:
+    counter = 0
+    for i in range(len(df)):
+        payment_file = pd.read_excel(df[i], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=df_order[i])
+        x_shape = payment_file_1.shape[1]
+        if x_shape == unique_shape[5]:
+            columns_drop = ['price']
+            payment_file_1.drop(columns_drop, inplace=True, axis=1)
+            payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+            if counter == 0:
+                counter += 1
+                payment_file_1.to_csv('shape_63.csv', mode='w', encoding='utf-8', index=False, header=True)
+            else:
+                payment_file_1.to_csv('shape_63.csv', mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv('shape_63.csv')
+    writer = pd.ExcelWriter('shape_63.xlsx', engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
 
 print("--- %s seconds ---" % (time.time() - start_time))
