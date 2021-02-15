@@ -40,6 +40,8 @@ df_spektr = df_spektr.replace('РА7.200.012 - 03', 'РА7.200.012-03')
 df_spektr = df_spektr.replace('СДТ1.040.301 ', 'СДТ1.040.304')
 df_spektr = df_spektr.replace('ЭЛ 4.00.002 ', 'ЭЛ4.00.002')
 print(len(df_spektr['обозначение'].unique()))
+print(df_spektr[df_spektr.duplicated()])
+
 # save_excel('уникальные_наименования_деталей.xlsx', new_names)
 # save_csv_header_w('уникальные_наименования_деталей.csv', new_names)
 # csv_writer(names_detals, 'уникальные_наименования_деталей.csv')
