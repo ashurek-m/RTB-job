@@ -39,10 +39,19 @@ df_spektr = df_spektr.replace('РА7.200.011 - 01', 'РА7.200.011-01')
 df_spektr = df_spektr.replace('РА7.200.012 - 03', 'РА7.200.012-03')
 df_spektr = df_spektr.replace('СДТ1.040.301 ', 'СДТ1.040.304')
 df_spektr = df_spektr.replace('ЭЛ 4.00.002 ', 'ЭЛ4.00.002')
-print(len(df_spektr['обозначение'].unique()))
-print(df_spektr[df_spektr.duplicated()])
 
-# save_excel('уникальные_наименования_деталей.xlsx', new_names)
-# save_csv_header_w('уникальные_наименования_деталей.csv', new_names)
-# csv_writer(names_detals, 'уникальные_наименования_деталей.csv')
+df_spektr.drop_duplicates().reset_index(drop=True)
+detali_list = df_spektr['обозначение'].unique()
+
+one_detal = df_spektr[df_spektr['обозначение'] == detali_list[200]]
+one_detal = one_detal.sort_values(by='номер_заказа')
+first_order = one_detal['номер_заказа'].min()
+extreme_order = one_detal['номер_заказа'].max()
+df_first_order = one_detal[one_detal['номер_заказа'] == first_order]
+df_extreme_order = one_detal[one_detal['номер_заказа'] == extreme_order]
+#time_relation_cn_podg = (df_extreme_order.loc[0, 'cn_т_подг_мин']) / (df_first_order.loc[0, 'cn_т_подг_мин'])
+print(one_detal)
+print(first_order, extreme_order)
+print(df_extreme_order.loc[:, 'cn_т_подг_мин'], df_first_order.loc[:, 'cn_т_подг_мин'])
+# print(time_relation_cn_podg)
 print("--- %s seconds ---" % (time.time() - start_time))
