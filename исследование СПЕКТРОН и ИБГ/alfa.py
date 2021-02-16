@@ -1,7 +1,6 @@
 import pandas as pd
 import time
 import csv
-import numpy as np
 
 
 def csv_writer(data, path):
@@ -26,6 +25,7 @@ def save_excel(path, data_frame, columns=True):
 
 
 start_time = time.time()
+# Подготовка данных
 df_spektr = pd.read_excel('СПЕКТРОНУС.xlsx')
 df_spektr = df_spektr.replace('АГ.01.01.07 ', 'АГ.01.01.07')
 df_spektr = df_spektr.replace('АГ.02.01.07 ', 'АГ.02.01.07')
@@ -39,19 +39,19 @@ df_spektr = df_spektr.replace('РА7.200.011 - 01', 'РА7.200.011-01')
 df_spektr = df_spektr.replace('РА7.200.012 - 03', 'РА7.200.012-03')
 df_spektr = df_spektr.replace('СДТ1.040.301 ', 'СДТ1.040.304')
 df_spektr = df_spektr.replace('ЭЛ 4.00.002 ', 'ЭЛ4.00.002')
-
+df_spektr = df_spektr.fillna(0)
 df_spektr.drop_duplicates().reset_index(drop=True)
+df_spektr = df_spektr.assign(t_prepa=lambda x: x['cn_т_подг_мин'] + x['dart_т_подг_мин'] + x['tour_т_подг_мин'])
+df_spektr = df_spektr.assign(t_cutting=lambda x: x['cn_т_маш_мин'] + x['dart_т_маш_мин'] + x['tour_т_маш_мин'])
+# Анализ данных
 detali_list = df_spektr['обозначение'].unique()
-
 one_detal = df_spektr[df_spektr['обозначение'] == detali_list[200]]
 one_detal = one_detal.sort_values(by='номер_заказа')
+one_detal = one_detal.loc[:, 'номер_заказа': 't_cutting']
+
 first_order = one_detal['номер_заказа'].min()
 extreme_order = one_detal['номер_заказа'].max()
-df_first_order = one_detal[one_detal['номер_заказа'] == first_order]
-df_extreme_order = one_detal[one_detal['номер_заказа'] == extreme_order]
-#time_relation_cn_podg = (df_extreme_order.loc[0, 'cn_т_подг_мин']) / (df_first_order.loc[0, 'cn_т_подг_мин'])
+df_first_order = one_detal[one_detal['номер_заказа'] == first_order].reset_index(drop=True)
+df_extreme_order = one_detal[one_detal['номер_заказа'] == extreme_order].reset_index(drop=True)
 print(one_detal)
-print(first_order, extreme_order)
-print(df_extreme_order.loc[:, 'cn_т_подг_мин'], df_first_order.loc[:, 'cn_т_подг_мин'])
-# print(time_relation_cn_podg)
 print("--- %s seconds ---" % (time.time() - start_time))
