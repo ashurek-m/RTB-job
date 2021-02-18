@@ -45,13 +45,26 @@ df_spektr = df_spektr.assign(t_prepa=lambda x: x['cn_т_подг_мин'] + x['d
 df_spektr = df_spektr.assign(t_cutting=lambda x: x['cn_т_маш_мин'] + x['dart_т_маш_мин'] + x['tour_т_маш_мин'])
 # Анализ данных
 detali_list = df_spektr['обозначение'].unique()
-one_detal = df_spektr[df_spektr['обозначение'] == detali_list[200]]
-one_detal = one_detal.sort_values(by='номер_заказа')
-one_detal = one_detal.loc[:, 'номер_заказа': 't_cutting']
-
-first_order = one_detal['номер_заказа'].min()
-extreme_order = one_detal['номер_заказа'].max()
-df_first_order = one_detal[one_detal['номер_заказа'] == first_order].reset_index(drop=True)
-df_extreme_order = one_detal[one_detal['номер_заказа'] == extreme_order].reset_index(drop=True)
-print(one_detal)
+for i in range(len(detali_list)):
+    one_detal = df_spektr[df_spektr['обозначение'] == detali_list[i]]
+    one_detal = one_detal.sort_values(by='номер_заказа')
+    one_detal = one_detal.loc[:, 'номер_заказа': 't_cutting']
+    first_order = one_detal['номер_заказа'].min()
+    extreme_order = one_detal['номер_заказа'].max()
+    df_first_order = one_detal[one_detal['номер_заказа'] == first_order].reset_index(drop=True)
+    df_extreme_order = one_detal[one_detal['номер_заказа'] == extreme_order].reset_index(drop=True)
+    first_change_cutting = df_first_order.loc[0, 't_cutting']
+    second_change_cutting = df_extreme_order.loc[0, 't_cutting']
+    first_change_prepa = df_first_order.loc[0, 't_prepa']
+    second_change_prepa = df_extreme_order.loc[0, 't_prepa']
+    if first_change_cutting != 0:
+        connection_cutting = second_change_cutting / first_change_cutting
+    else:
+        connection_cutting = 0
+    if first_change_prepa != 0:
+        connection_prepa = second_change_prepa / first_change_prepa
+    else:
+        connection_prepa = 0
+    if connection_prepa < 1 or connection_cutting < 1:
+        print('{:.1%}, {:.1%}'.format(connection_prepa, connection_cutting))
 print("--- %s seconds ---" % (time.time() - start_time))
