@@ -78,13 +78,20 @@ def list_shape_fyn(list_addres):
 start_time = time.time()
 # search_by_numder_order('good_address_file1.csv')
 # shape_list = list_shape_fyn('addres_and_order.csv')
-df_data = pd.read_csv('good_address_file1.csv', names=['path', 'order'])
+df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
-j = 0
-for i in range(len(df_data_addres)):
-    df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
-    df_file = df_file.loc[:, 'Unnamed: 0': 'час']
-    j += 1
-    print(df_file.shape, j)
+j = 3038
+for i in range(3035, len(df_data_addres), 1):
+    if df_data.loc[i, 'order'] != 36685:
+        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+        df_file = df_file.loc[:, 'Unnamed: 0': 'час']
+        j += 1
+        print(df_file.shape, df_data.loc[i, 'order'], j)
+    elif df_data.loc[i, 'order'] != 38063:
+        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+        df_file.info()
+    else:
+        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+        df_file.info()
 print("--- %s seconds ---" % (time.time() - start_time))
