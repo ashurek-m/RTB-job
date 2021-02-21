@@ -1,13 +1,23 @@
 import pandas as pd
 import time
 import csv
-import numpy as np
 
 
 def csv_writer(data, path):
     with open(path, "w", encoding='utf-8', newline='') as csv_file:
         writer_csv = csv.writer(csv_file)
         writer_csv.writerows(data)
+        csv_file.close()
+
+
+def csv_writer_spisok(data, path):
+    new_list = []
+    for i in range(len(data)):
+        listys = [data[i]]
+        new_list.append(listys)
+    with open(path, "w", encoding='utf-8', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerows(new_list)
         csv_file.close()
 
 
@@ -40,18 +50,41 @@ def search_by_numder_order(address_file):
 
 
 def list_shape_fyn(list_addres):
-    shape_list_ = []
-    for i in range(len(list_addres)):
-        df_file = pd.read_excel(str(list_addres[i]), sheet_name='расчет', header=13)
-        df_file = df_file.loc[:, 'Unnamed: 0': 'час']
-        shape_ = df_file.shape()
-        shape_list_.append(shape_[1])
-    return shape_list_
+    df_data = pd.read_csv(list_addres, names=['path', 'order'])
+    df_data_addres = df_data.loc[:, 'path']
+    print(len(df_data_addres))
+    shape_list_2 = []
+    error_list = []
+    not_found_list = []
+    try:
+        for i in range(len(df_data_addres)):
+            shape_list_1 = []
+            df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+            df_file = df_file.loc[:, 'Unnamed: 0': 'час']
+            shape_list_1.append(df_file.shape[1])
+            shape_list_1.append(df_data.loc[i, 'order'])
+            shape_list_2.append(shape_list_1)
+    except KeyError:
+        error_list.append(df_data_addres[i])
+    except FileNotFoundError:
+        not_found_list.append(df_data_addres[i])
+    csv_writer_spisok(error_list, 'странные файлы.csv')
+    csv_writer_spisok(not_found_list, 'нет файлов.csv')
+    csv_writer(shape_list_2, 'открылись.csv')
+    print(len(shape_list_2))
+    return shape_list_2
 
 
 start_time = time.time()
 # search_by_numder_order('good_address_file1.csv')
-df = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
-df_addres = df.loc[:, 'path']
-
+# shape_list = list_shape_fyn('addres_and_order.csv')
+df_data = pd.read_csv('good_address_file1.csv', names=['path', 'order'])
+df_data_addres = df_data.loc[:, 'path']
+print(len(df_data_addres))
+j = 0
+for i in range(len(df_data_addres)):
+    df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+    df_file = df_file.loc[:, 'Unnamed: 0': 'час']
+    j += 1
+    print(df_file.shape, j)
 print("--- %s seconds ---" % (time.time() - start_time))
