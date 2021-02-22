@@ -81,17 +81,25 @@ start_time = time.time()
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
-j = 3038
-for i in range(3035, len(df_data_addres), 1):
-    if df_data.loc[i, 'order'] != 36685:
+j = 0
+list_error = []
+for i in range(len(df_data_addres)):
+    if df_data.loc[i, 'order'] == 36685:
+        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+        df_file.info()
+        list_error.append(df_data_addres[i])
+        print(df_file.shape, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 38063:
+        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
+        df_file.info()
+        list_error.append(df_data_addres[i])
+        print(df_file.shape, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] < 40000:
         df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
         df_file = df_file.loc[:, 'Unnamed: 0': 'час']
-        j += 1
         print(df_file.shape, df_data.loc[i, 'order'], j)
-    elif df_data.loc[i, 'order'] != 38063:
-        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
-        df_file.info()
-    else:
-        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
-        df_file.info()
+        j += 1
+csv_writer_spisok(list_error, 'странные файлы.csv')
 print("--- %s seconds ---" % (time.time() - start_time))
