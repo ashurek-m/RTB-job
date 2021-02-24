@@ -51,27 +51,29 @@ def search_by_numder_order(address_file):
 
 def list_shape_fyn(list_addres):
     df_data = pd.read_csv(list_addres, names=['path', 'order'])
+
     df_data_addres = df_data.loc[:, 'path']
-    print(len(df_data_addres))
     shape_list_2 = []
     error_list = []
     not_found_list = []
-    try:
-        for i in range(len(df_data_addres)):
+    for i in range(len(df_data_addres)):
+        try:
             shape_list_1 = []
             df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
             df_file = df_file.loc[:, 'Unnamed: 0': 'час']
+            shape_list_1.append(df_data_addres[i])
             shape_list_1.append(df_file.shape[1])
             shape_list_1.append(df_data.loc[i, 'order'])
             shape_list_2.append(shape_list_1)
-    except KeyError:
-        error_list.append(df_data_addres[i])
-    except FileNotFoundError:
-        not_found_list.append(df_data_addres[i])
+        except KeyError:
+            error_list.append(df_data_addres[i])
+            continue
+        except FileNotFoundError:
+            not_found_list.append(df_data_addres[i])
+            continue
     csv_writer_spisok(error_list, 'странные файлы.csv')
     csv_writer_spisok(not_found_list, 'нет файлов.csv')
     csv_writer(shape_list_2, 'открылись.csv')
-    print(len(shape_list_2))
     return shape_list_2
 
 
@@ -81,9 +83,9 @@ start_time = time.time()
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
-j = 0
+j = 4073
 list_error = []
-for i in range(len(df_data_addres)):
+for i in range(4073, len(df_data_addres), 1):
     if df_data.loc[i, 'order'] == 36685:
         df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
         df_file.info()
@@ -91,15 +93,41 @@ for i in range(len(df_data_addres)):
         print(df_file.shape, df_data.loc[i, 'order'], j)
         j += 1
     elif df_data.loc[i, 'order'] == 38063:
-        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
-        df_file.info()
         list_error.append(df_data_addres[i])
-        print(df_file.shape, df_data.loc[i, 'order'], j)
+        print(0, df_data.loc[i, 'order'], j)
         j += 1
-    elif df_data.loc[i, 'order'] < 40000:
+    elif df_data.loc[i, 'order'] == 38579:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 39271:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 39291:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 39337:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 39339:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 60471:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    elif df_data.loc[i, 'order'] == 60472:
+        list_error.append(df_data_addres[i])
+        print(0, df_data.loc[i, 'order'], j)
+        j += 1
+    else:
         df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
         df_file = df_file.loc[:, 'Unnamed: 0': 'час']
         print(df_file.shape, df_data.loc[i, 'order'], j)
         j += 1
-csv_writer_spisok(list_error, 'странные файлы.csv')
+
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -1,22 +1,22 @@
-import os, glob, csv
+import csv
+import glob
+import time
 
-def spisok_spiskov(data):
+
+def csv_writer_spisok(data, path):
     new_list = []
     for i in range(len(data)):
-       listys = [data[i]]
-       new_list.append(listys)
-    return new_list
-
-def csv_writer(data, path):
-    """
-    Write data to a CSV file path
-    """
+        listys = [data[i]]
+        new_list.append(listys)
     with open(path, "w", encoding='utf-8', newline='') as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerows(data)
+        writer.writerows(new_list)
         csv_file.close()
 
-#encoding='utf-8'
-way_list = glob.glob('W:\Department - External Economic\ЗАКАЗЫ ВНУТРЕННИХ ПОТРЕБИТЕЛЕЙ\**\*.xls', recursive=True)
-path = "address_file1.csv"
-csv_writer(spisok_spiskov(way_list), path)
+
+start_time = time.time()
+# encoding='utf-8'
+way_list = glob.glob('W:\\Department - External Economic\\ЗАКАЗЫ ВНУТРЕННИХ ПОТРЕБИТЕЛЕЙ\\**\\*.xls', recursive=True)
+name = "C:\\Python's_project\\RTB-job\\анализ расчетных файлов 2018\\new_general_address_file.csv"
+csv_writer_spisok(way_list, name)
+print("--- %s seconds ---" % (time.time() - start_time))
