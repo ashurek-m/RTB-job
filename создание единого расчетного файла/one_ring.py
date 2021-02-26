@@ -45,13 +45,13 @@ def search_by_numder_order(address_file):
             address_file_client.append(file_adrress_client)
         except ValueError:
             continue
-    path = 'addres_and_order' + '.csv'
-    csv_writer(address_file_client, path)
+    name = 'address_and_order' + '.csv'
+    csv_writer(address_file_client, name)
 
 
 def list_shape_fyn(list_addres):
     df_data = pd.read_csv(list_addres, names=['path', 'order'])
-
+    df_data = df_data[df_data['order'] < 40000].reset_index(drop=True)
     df_data_addres = df_data.loc[:, 'path']
     shape_list_2 = []
     error_list = []
@@ -62,8 +62,8 @@ def list_shape_fyn(list_addres):
             df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
             df_file = df_file.loc[:, 'Unnamed: 0': 'час']
             shape_list_1.append(df_data_addres[i])
-            shape_list_1.append(df_file.shape[1])
             shape_list_1.append(df_data.loc[i, 'order'])
+            shape_list_1.append(df_file.shape[1])
             shape_list_2.append(shape_list_1)
         except KeyError:
             error_list.append(df_data_addres[i])
@@ -78,8 +78,8 @@ def list_shape_fyn(list_addres):
 
 
 start_time = time.time()
-# search_by_numder_order('good_address_file1.csv')
-# shape_list = list_shape_fyn('addres_and_order.csv')
+# search_by_numder_order('good_file.csv')
+shape_list = list_shape_fyn('address_and_order.csv')
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
