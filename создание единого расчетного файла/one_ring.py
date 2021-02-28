@@ -74,12 +74,11 @@ def list_shape_fyn(list_addres):
     csv_writer_spisok(error_list, 'странные файлы.csv')
     csv_writer_spisok(not_found_list, 'нет файлов.csv')
     csv_writer(shape_list_2, 'открылись.csv')
-    return shape_list_2
 
 
 start_time = time.time()
 # search_by_numder_order('good_file.csv')
-shape_list = list_shape_fyn('address_and_order.csv')
+list_shape_fyn('address_and_order.csv')
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
