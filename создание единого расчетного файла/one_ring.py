@@ -74,7 +74,6 @@ def list_shape_fyn(list_addres):
     csv_writer_spisok(error_list, 'странные файлы.csv')
     csv_writer_spisok(not_found_list, 'нет файлов.csv')
     csv_writer(shape_list_2, 'открылись.csv')
-    return shape_list_2
 
 
 start_time = time.time()
