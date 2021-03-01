@@ -76,9 +76,151 @@ def list_shape_fyn(list_addres):
     csv_writer(shape_list_2, 'открылись.csv')
 
 
+def shape_62(address_file, number=62):
+    counter = 0
+    name_file_csv = 'shape_' + str(number) + '.csv'
+    name_file_exel = 'shape_' + str(number) + '.xlsx'
+    address_data = pd.read_csv(address_file, names=['path', 'order', 'shape'])
+    address_data = address_data[address_data['shape'] == number].reset_index(drop=True)
+    for i in range(address_data.shape[0]):
+        payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file_1.to_csv(name_file_csv, mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file_1.to_csv(name_file_csv, mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv(name_file_csv)
+    writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+
+
+def shape_63(address_file, number=63):
+    counter = 0
+    name_file_csv = 'shape_' + str(number) + '.csv'
+    name_file_exel = 'shape_' + str(number) + '.xlsx'
+    address_data = pd.read_csv(address_file, names=['path', 'order', 'shape'])
+    address_data = address_data[address_data['shape'] == number].reset_index(drop=True)
+    for i in range(address_data.shape[0]):
+        payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file_1.to_csv(name_file_csv, mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file_1.to_csv(name_file_csv, mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv(name_file_csv)
+    writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+
+
+def shape_64(address_file, number=64):
+    counter = 0
+    name_file_csv = 'shape_' + str(number) + '.csv'
+    name_file_exel = 'shape_' + str(number) + '.xlsx'
+    address_data = pd.read_csv(address_file, names=['path', 'order', 'shape'])
+    address_data = address_data[address_data['shape'] == number].reset_index(drop=True)
+    for i in range(address_data.shape[0]):
+        payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
+        columns_drop = ['Unnamed: 7', 'price']
+        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file_1.to_csv(name_file_csv, mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file_1.to_csv(name_file_csv, mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv(name_file_csv)
+    writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+
+
+def shape_65(address_file, number=65):
+    counter = 0
+    name_file_csv = 'shape_' + str(number) + '.csv'
+    name_file_exel = 'shape_' + str(number) + '.xlsx'
+    address_data = pd.read_csv(address_file, names=['path', 'order', 'shape'])
+    address_data = address_data[address_data['shape'] == number].reset_index(drop=True)
+    for i in range(address_data.shape[0]):
+        payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
+        columns_drop = ['Unnamed: 7', 'Unnamed: 8', 'Unnamed: 33']
+        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file_1.to_csv(name_file_csv, mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file_1.to_csv(name_file_csv, mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv(name_file_csv)
+    writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+
+
+def shape_66(address_file, number=66):
+    counter = 0
+    name_file_csv = 'shape_' + str(number) + '.csv'
+    name_file_exel = 'shape_' + str(number) + '.xlsx'
+    address_data = pd.read_csv(address_file, names=['path', 'order', 'shape'])
+    address_data = address_data[address_data['shape'] == number].reset_index(drop=True)
+    for i in range(address_data.shape[0]):
+        payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
+        columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
+        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file_1.to_csv(name_file_csv, mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file_1.to_csv(name_file_csv, mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv(name_file_csv)
+    writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+
+
+def shape_67(address_file, number=67):
+    counter = 0
+    name_file_csv = 'shape_' + str(number) + '.csv'
+    name_file_exel = 'shape_' + str(number) + '.xlsx'
+    address_data = pd.read_csv(address_file, names=['path', 'order', 'shape'])
+    address_data = address_data[address_data['shape'] == number].reset_index(drop=True)
+    for i in range(address_data.shape[0]):
+        payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
+        payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
+        payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
+        columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 35']
+        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
+        if counter == 0:
+            counter += 1
+            payment_file_1.to_csv(name_file_csv, mode='w', encoding='utf-8', index=False, header=True)
+        else:
+            payment_file_1.to_csv(name_file_csv, mode='a', encoding='utf-8', index=False, header=False)
+    save_excel = pd.read_csv(name_file_csv)
+    writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
+    save_excel.to_excel(writer, sheet_name='welcome', index=False)
+    writer.save()
+
+
 start_time = time.time()
 # search_by_numder_order('good_file.csv')
-list_shape_fyn('address_and_order.csv')
+# list_shape_fyn('address_and_order.csv')
+# shape_62('открылись.csv')
+shape_63('открылись.csv')
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
