@@ -130,8 +130,8 @@ def shape_64(address_file, number=64):
         payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
         payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
-        columns_drop = ['Unnamed: 7', 'price']
-        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        # columns_drop = ['Unnamed: 7', 'price']
+        # payment_file_1.drop(columns_drop, inplace=True, axis=1)
         payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
         if counter == 0:
             counter += 1
@@ -154,8 +154,8 @@ def shape_65(address_file, number=65):
         payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
         payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
-        columns_drop = ['Unnamed: 7', 'Unnamed: 8', 'Unnamed: 33']
-        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        # columns_drop = ['Unnamed: 7', 'Unnamed: 8', 'Unnamed: 33']
+        # payment_file_1.drop(columns_drop, inplace=True, axis=1)
         payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
         if counter == 0:
             counter += 1
@@ -178,8 +178,8 @@ def shape_66(address_file, number=66):
         payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
         payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
-        columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
-        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        # columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
+        # payment_file_1.drop(columns_drop, inplace=True, axis=1)
         payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
         if counter == 0:
             counter += 1
@@ -202,8 +202,8 @@ def shape_67(address_file, number=67):
         payment_file = pd.read_excel(address_data.loc[i, 'path'], sheet_name='расчет', header=13)
         payment_file_1 = payment_file.loc[:, 'Unnamed: 1': 'час']
         payment_file_1 = payment_file_1.assign(order=address_data.loc[i, 'order'])
-        columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 35']
-        payment_file_1.drop(columns_drop, inplace=True, axis=1)
+        # columns_drop = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 35']
+        # payment_file_1.drop(columns_drop, inplace=True, axis=1)
         payment_file_1.dropna(subset=['Unnamed: 1'], inplace=True)
         if counter == 0:
             counter += 1
