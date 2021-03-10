@@ -31,4 +31,13 @@ for i in range(len(df_refbaan)):
         refbaan_list.append(df_refbaan[i])
 df_tech = df_tech.assign(name_3=refbaan_list)
 
+iter = df_pay.shape[0]
+for j in range(iter):
+    df_tech = df_tech[df_tech['REF_BAAN'] == df_pay.loc[j, 'name_2']]
+    df_tech = df_tech[df_tech['ИНДЕКС'] == df_pay.loc[j, 'index_2']]
+    print(df_tech.loc[:, 'Tpc prepa': 'Tpc exec'])
+    t_cn_prepa = df_tech.groupby('Tache')['Tpc prepa'].sum()
+    print(t_cn_prepa)
+    input()
+
 print("--- %s seconds ---" % (time.time() - start_time))
