@@ -21,10 +21,18 @@ def to_be(numder, what_we_compare, what_look):
         return save
 
 
+def save_excel(path, data_frame, columns=True):
+    writer_on = pd.ExcelWriter(path, engine='xlsxwriter')
+    data_frame.to_excel(writer_on, index=False, header=columns)
+    writer_on.save()
+
+
 start_time = time.time()
 df_pay = pd.read_excel('спектронус-плюс.xlsx')
-df_pay =df_pay.assign(dart_prepa=lambda x: x['dart_т_подг_мин'] + x['mx\dart-tour_т_подг_мин'])
-df_pay = df_pay.assign(dart_catting=lambda x: x['dart_т_маш_мин'] + x['mx\dart-tour_т_ман_мин'])
+df_pay = df_pay.fillna(0)
+df_pay = df_pay.assign(dart_prepa=lambda x: x['dart_т_подг_мин'] + x['mx\dart-tour_т_подг_мин'] + x['mx-cn_т_подг_мин'])
+df_pay = df_pay.assign(dart_catting=lambda x: x['dart_т_маш_мин'] + x['mx\dart-tour_т_ман_мин'] +
+                                              x['mx-cn_т_маш_мин'])
 df_tech = pd.read_excel('АРХИВ ТЕХНОЛОГИЙ плюс.xlsx')
 iter = df_pay.shape[0]
 time_list = []
@@ -37,6 +45,19 @@ support_list = ['REF_BAAN',
                 'dart_catting',
                 'tour_т_подг_мин',
                 'tour_т_маш_мин',
+                't_prepa_200',
+                't_prepa_205',
+                't_prepa_209',
+                't_prepa_210',
+                't_prepa_211',
+                't_prepa_215',
+                't_catting_200',
+                't_catting_205',
+                't_catting_209',
+                't_catting_210',
+                't_catting_211',
+                't_catting_215',
+                'технология'
                 ]
 tech_number = [200, 205, 209, 210, 211, 215]
 
@@ -70,7 +91,8 @@ for j in range(iter):
         for i in range(len(tech_number)):
             time_list1.append(to_be(tech_number[i], index1, time_catting))
         time_list1.append('технология есть')
-        print(time_list1)
+        # print(time_list1)
+        time_list.append(time_list1)
     else:
         time_list1.append(df_pay.loc[j, 'обозначение'])
         time_list1.append(df_pay.loc[j, 'индекс'])
@@ -85,7 +107,21 @@ for j in range(iter):
         for i in range(zetta):
             time_list1.append(0)
         time_list1.append('технология нет')
-        print(time_list1)
+        # print(time_list1)
+        time_list.append(time_list1)
     # print('stop')
     # input()
+df_all_time = pd.DataFrame(data=time_list, columns=support_list)
+df_all_time = df_all_time.assign(total_prepa_pay=lambda x: x['cn_т_подг_мин'] + x['dart_prepa'] +
+                                                           x['tour_т_подг_мин'])
+df_all_time = df_all_time.assign(total_prepa_tech=lambda x: x['t_prepa_200'] + x['t_prepa_205'] +
+                                                            x['t_prepa_209'] + x['t_prepa_210'] +
+                                                            x['t_prepa_211'] + x['t_prepa_215'])
+df_all_time = df_all_time.assign(total_catting_pay=lambda x: x['cn_т_маш_мин'] + x['dart_catting'] +
+                                                             x['tour_т_маш_мин'])
+df_all_time = df_all_time.assign(total_catting_tech=lambda x: x['t_catting_200'] + x['t_catting_205'] +
+                                                            x['t_catting_209'] + x['t_catting_210'] +
+                                                            x['t_catting_211'] + x['t_catting_215'])
+# df_all_time.info()
+save_excel('all_time.xlsx', df_all_time)
 print("--- %s seconds ---" % (time.time() - start_time))
