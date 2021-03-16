@@ -219,7 +219,7 @@ def shape_67(address_file, number=67):
 start_time = time.time()
 # search_by_numder_order('good_file.csv')
 # list_shape_fyn('address_and_order.csv')
-# shape_62('открылись.csv')
+shape_62('открылись.csv')
 shape_63('открылись.csv')
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']

@@ -64,7 +64,10 @@ tech_number = [200, 205, 209, 210, 211, 215]
 for j in range(iter):
     time_list1 = []
     df_tech1 = df_tech[df_tech['name_3'] == df_pay.loc[j, 'name_2']]
+    print(df_tech1)
+    print(df_pay.loc[j, 'index_2'])
     df_tech2 = df_tech1[df_tech1['ИНДЕКС'] == df_pay.loc[j, 'index_2']].reset_index(drop=True)
+    print(df_tech2)
     if df_tech2.shape[0] != 0:
         time_prepa = df_tech2.groupby('Tache')['Tpc prepa'].sum()
         time_catting = df_tech2.groupby('Tache')['Tpc exec'].sum()
@@ -91,7 +94,7 @@ for j in range(iter):
         for i in range(len(tech_number)):
             time_list1.append(to_be(tech_number[i], index1, time_catting))
         time_list1.append('технология есть')
-        # print(time_list1)
+        print(time_list1)
         time_list.append(time_list1)
     else:
         time_list1.append(df_pay.loc[j, 'обозначение'])
@@ -107,21 +110,24 @@ for j in range(iter):
         for i in range(zetta):
             time_list1.append(0)
         time_list1.append('технология нет')
-        # print(time_list1)
+        print(time_list1)
         time_list.append(time_list1)
-    # print('stop')
-    # input()
+    print('stop')
+    input()
 df_all_time = pd.DataFrame(data=time_list, columns=support_list)
 df_all_time = df_all_time.assign(total_prepa_pay=lambda x: x['cn_т_подг_мин'] + x['dart_prepa'] +
                                                            x['tour_т_подг_мин'])
 df_all_time = df_all_time.assign(total_prepa_tech=lambda x: x['t_prepa_200'] + x['t_prepa_205'] +
                                                             x['t_prepa_209'] + x['t_prepa_210'] +
                                                             x['t_prepa_211'] + x['t_prepa_215'])
+df_all_time = df_all_time.assign(relation_prepa=lambda x: x['total_prepa_pay'] / x['total_prepa_tech'])
 df_all_time = df_all_time.assign(total_catting_pay=lambda x: x['cn_т_маш_мин'] + x['dart_catting'] +
                                                              x['tour_т_маш_мин'])
 df_all_time = df_all_time.assign(total_catting_tech=lambda x: x['t_catting_200'] + x['t_catting_205'] +
                                                             x['t_catting_209'] + x['t_catting_210'] +
                                                             x['t_catting_211'] + x['t_catting_215'])
+df_all_time = df_all_time.assign(relation_catting=lambda x: x['total_catting_pay'] / x['total_catting_tech'])
+df_all_time = df_all_time.fillna(0)
 # df_all_time.info()
 save_excel('all_time.xlsx', df_all_time)
 print("--- %s seconds ---" % (time.time() - start_time))
