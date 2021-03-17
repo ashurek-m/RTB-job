@@ -112,8 +112,8 @@ for j in range(iter):
         time_list1.append('технология нет')
         print(time_list1)
         time_list.append(time_list1)
-    print('stop')
-    input()
+    # print('stop')
+    # input()
 df_all_time = pd.DataFrame(data=time_list, columns=support_list)
 df_all_time = df_all_time.assign(total_prepa_pay=lambda x: x['cn_т_подг_мин'] + x['dart_prepa'] +
                                                            x['tour_т_подг_мин'])
