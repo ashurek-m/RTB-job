@@ -45,29 +45,38 @@ support_list = ['REF_BAAN',
                 'dart_catting',
                 'tour_т_подг_мин',
                 'tour_т_маш_мин',
+                'финишная_т_подг_мин',
+                'финишная_т_маш_мин',
+                'слесарная_т_подг_мин',
+                'слесарная_т_маш_мин',
+                'шлифовальная_т_подг_мин',
+                'шлифовальная_т_маш_мин',
                 't_prepa_200',
                 't_prepa_205',
                 't_prepa_209',
                 't_prepa_210',
                 't_prepa_211',
                 't_prepa_215',
+                't_prepa_220',
+                't_prepa_233',
+                't_prepa_225',
                 't_catting_200',
                 't_catting_205',
                 't_catting_209',
                 't_catting_210',
                 't_catting_211',
                 't_catting_215',
+                't_catting_220',
+                't_catting_233',
+                't_catting_225',
                 'технология'
                 ]
-tech_number = [200, 205, 209, 210, 211, 215]
+tech_number = [200, 205, 209, 210, 211, 215, 220, 233, 225]
 
 for j in range(iter):
     time_list1 = []
     df_tech1 = df_tech[df_tech['name_3'] == df_pay.loc[j, 'name_2']]
-    print(df_tech1)
-    print(df_pay.loc[j, 'index_2'])
     df_tech2 = df_tech1[df_tech1['ИНДЕКС'] == df_pay.loc[j, 'index_2']].reset_index(drop=True)
-    print(df_tech2)
     if df_tech2.shape[0] != 0:
         time_prepa = df_tech2.groupby('Tache')['Tpc prepa'].sum()
         time_catting = df_tech2.groupby('Tache')['Tpc exec'].sum()
@@ -89,6 +98,12 @@ for j in range(iter):
         time_list1.append(df_pay.loc[j, support_list[6]])
         time_list1.append(df_pay.loc[j, support_list[7]])
         time_list1.append(df_pay.loc[j, support_list[8]])
+        time_list1.append(df_pay.loc[j, support_list[9]])
+        time_list1.append(df_pay.loc[j, support_list[10]])
+        time_list1.append(df_pay.loc[j, support_list[11]])
+        time_list1.append(df_pay.loc[j, support_list[12]])
+        time_list1.append(df_pay.loc[j, support_list[13]])
+        time_list1.append(df_pay.loc[j, support_list[14]])
         for i in range(len(tech_number)):
             time_list1.append(to_be(tech_number[i], index1, time_prepa))
         for i in range(len(tech_number)):
@@ -106,7 +121,13 @@ for j in range(iter):
         time_list1.append(df_pay.loc[j, support_list[6]])
         time_list1.append(df_pay.loc[j, support_list[7]])
         time_list1.append(df_pay.loc[j, support_list[8]])
-        zetta = 12
+        time_list1.append(df_pay.loc[j, support_list[9]])
+        time_list1.append(df_pay.loc[j, support_list[10]])
+        time_list1.append(df_pay.loc[j, support_list[11]])
+        time_list1.append(df_pay.loc[j, support_list[12]])
+        time_list1.append(df_pay.loc[j, support_list[13]])
+        time_list1.append(df_pay.loc[j, support_list[14]])
+        zetta = 18
         for i in range(zetta):
             time_list1.append(0)
         time_list1.append('технология нет')
