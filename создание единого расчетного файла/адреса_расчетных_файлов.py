@@ -37,6 +37,14 @@ for i in range(len(clean_address)):
         error_list.append(clean_address[i])
         sum3 += 1
         continue
+    except KeyError:
+        error_list.append(clean_address[i])
+        sum2 += 1
+        continue
+    except ValueError:
+        error_list.append(clean_address[i])
+        sum3 += 1
+        continue
 
 
 print(len(clean_address))

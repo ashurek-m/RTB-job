@@ -216,11 +216,35 @@ def shape_67(address_file, number=67):
     writer.save()
 
 
+def search_by_client(address_file, client):
+    file_csv = pd.read_csv(address_file, names=['path'])
+    address_file_client = []
+    file = file_csv.loc[:, 'path']
+    for i in range(len(file)):
+        file_adrress_client = []
+        registr = file[i].title()
+        if client in registr:
+            name_file = file[i].split("\\")
+            try:
+                num_order = int(name_file[-1][:5])
+                file_adrress_client.append(file[i])
+                file_adrress_client.append(num_order)
+                address_file_client.append(file_adrress_client)
+            except ValueError:
+                continue
+    path = client + '.csv'
+    csv_writer(address_file_client, path)
+
+
 start_time = time.time()
 # search_by_numder_order('good_file.csv')
 # list_shape_fyn('address_and_order.csv')
 shape_62('открылись.csv')
 shape_63('открылись.csv')
+shape_64('открылись.csv')
+shape_65('открылись.csv')
+shape_66('открылись.csv')
+shape_67('открылись.csv')
 df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
 df_data_addres = df_data.loc[:, 'path']
 print(len(df_data_addres))
