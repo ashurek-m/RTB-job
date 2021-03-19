@@ -16,7 +16,7 @@ def csv_writer_spisok(data, path):
 
 
 start_time = time.time()
-csv1 = pd.read_csv("C:\\Python's_project\\RTB-job\\создание единого расчетного файла\\new_general_address_file.csv", names=['path'])
+csv1 = pd.read_csv("C:\\Python's_project\\RTB-job\\создание единого расчетного файла\\new_general_address_file(xlsx).csv", names=['path'])
 clean_address = csv1.loc[:, 'path']
 sum1 = 0
 sum2 = 0
@@ -51,6 +51,6 @@ print(len(clean_address))
 print(f'открылось файлов {sum1}')
 print(f'не открылось файлов из-за отсуствия листа расчет {sum2}')
 print(f'не открылось по другой причине {sum3}')
-names = "C:\\Python's_project\\RTB-job\\создание единого расчетного файла\\good_file2017(xls).csv"
+names = "C:\\Python's_project\\RTB-job\\создание единого расчетного файла\\good_file2017(xlsx).csv"
 csv_writer_spisok(good_list, names)
 print("--- %s seconds ---" % (time.time() - start_time))
