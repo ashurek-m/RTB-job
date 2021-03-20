@@ -21,7 +21,7 @@ def csv_writer_spisok(data, path):
         csv_file.close()
 
 
-def save_excel(path, data_frame, columns=True):
+def save_excel(path, data_frame, columns):
     writer_on = pd.ExcelWriter(path, engine='xlsxwriter')
     data_frame.to_excel(writer_on, index=False, header=columns)
     writer_on.save()
@@ -216,83 +216,113 @@ def shape_67(address_file, number=67):
     writer.save()
 
 
-def search_by_client(address_file, client):
-    file_csv = pd.read_csv(address_file, names=['path'])
-    address_file_client = []
-    file = file_csv.loc[:, 'path']
-    for i in range(len(file)):
-        file_adrress_client = []
-        registr = file[i].title()
-        if client in registr:
-            name_file = file[i].split("\\")
-            try:
-                num_order = int(name_file[-1][:5])
-                file_adrress_client.append(file[i])
-                file_adrress_client.append(num_order)
-                address_file_client.append(file_adrress_client)
-            except ValueError:
-                continue
-    path = client + '.csv'
-    csv_writer(address_file_client, path)
-
-
 start_time = time.time()
-# search_by_numder_order('good_file.csv')
-# list_shape_fyn('address_and_order.csv')
-shape_62('открылись.csv')
-shape_63('открылись.csv')
-shape_64('открылись.csv')
-shape_65('открылись.csv')
-shape_66('открылись.csv')
-shape_67('открылись.csv')
-df_data = pd.read_csv('addres_and_order.csv', names=['path', 'order'])
-df_data_addres = df_data.loc[:, 'path']
-print(len(df_data_addres))
-j = 4073
-list_error = []
-for i in range(4073, len(df_data_addres), 1):
-    if df_data.loc[i, 'order'] == 36685:
-        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
-        df_file.info()
-        list_error.append(df_data_addres[i])
-        print(df_file.shape, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 38063:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 38579:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 39271:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 39291:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 39337:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 39339:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 60471:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    elif df_data.loc[i, 'order'] == 60472:
-        list_error.append(df_data_addres[i])
-        print(0, df_data.loc[i, 'order'], j)
-        j += 1
-    else:
-        df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
-        df_file = df_file.loc[:, 'Unnamed: 0': 'час']
-        print(df_file.shape, df_data.loc[i, 'order'], j)
-        j += 1
 
+# search_by_numder_order('good_file2019(xls).csv')
+# list_shape_fyn('address_and_order.csv')
+df = pd.read_csv('открылись.csv', names=['path', 'order', 'shape'])
+list_shape = df['shape'].unique()
+print(list_shape)
+# shape_62('открылись.csv')
+# shape_63('открылись.csv')
+# shape_64('открылись.csv')
+# shape_65('открылись.csv')
+# shape_66('открылись.csv')
+# shape_67('открылись.csv')
+# shape_62('открылись.csv', number=68)
+
+
+df_shape_62 = pd.read_csv('shape_62.csv')
+df_shape_63 = pd.read_csv('shape_63.csv')
+df_shape_64 = pd.read_csv('shape_64.csv')
+df_shape_65 = pd.read_csv('shape_65.csv')
+df_shape_66 = pd.read_csv('shape_66.csv')
+df_shape_67 = pd.read_csv('shape_67.csv')
+df_shape_68 = pd.read_csv('shape_68.csv')
+
+columns_for_excel = ['обозначение',
+                     'наименование',
+                     'индекс',
+                     'коэф_входимости',
+                     'заказанное_кол',
+                     'уровень_критичности',
+                     'примечания',
+                     'наименование_материала',
+                     'locmat_name',
+                     'locmat',
+                     'уд_вес',
+                     'стоимость_мат_за_1кг_м',
+                     'заг_диаметр',
+                     'заг_толщина',
+                     'заг_длина',
+                     'заг_ширина',
+                     'заг_на_кол_во',
+                     'прутки',
+                     'плиты',
+                     'вес',
+                     'стоимость_мат_ла',
+                     'индустриализация_вид',
+                     'индустриализация_стоимость',
+                     'подряд_вид',
+                     'подряд_стоимость',
+                     'термообработка_вид',
+                     'терообработка_стоимость',
+                     'покрытие_площадь',
+                     'покрытие_вид',
+                     'покрытие_стоимость',
+                     'резка_т_подг_мин',
+                     'резка_т_маш_мин',
+                     'резка_т_сум_ч',
+                     'cn_т_подг_мин',
+                     'cn_т_маш_мин',
+                     'cn_т_сум_ч',
+                     'dart_т_подг_мин',
+                     'dart_т_маш_мин',
+                     'dart_т_сум_ч',
+                     'mx-cn_т_подг_мин',
+                     'mx-cn_т_маш_мин',
+                     'mx-cn_т_сум_ч',
+                     'tour_т_подг_мин',
+                     'tour_т_маш_мин',
+                     'tour_т_сум_ч',
+                     'mx\\dart-tour_т_подг_мин',
+                     'mx\\dart-tour_т_ман_мин',
+                     'mx\\dart-tour_т_сум_ч',
+                     'финишная_т_подг_мин',
+                     'финишная_т_маш_мин',
+                     'финишная_т_сум_ч',
+                     'слесарная_т_подг_мин',
+                     'слесарная_т_маш_мин',
+                     'слесарная_т_сум_ч',
+                     'шлифовальная_т_подг_мин',
+                     'шлифовальная_т_маш_мин',
+                     'шлифовальная_т_сум_ч',
+                     'резерв_т_подг_мин',
+                     'резерв_т_маш_мин',
+                     'резерв_т_сум_ч',
+                     'т_партии_ч',
+                     'номер_заказа']
+print(len(columns_for_excel))
+
+save_csv_header_w('united_pay_file.csv', df_shape_62, columns=False)
+columns_drop63 = ['Unnamed: 31']
+df_shape_63.drop(columns_drop63, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_63, columns=False, w_or_a='a')
+columns_drop64 = ['Unnamed: 7', 'price, $']
+df_shape_64.drop(columns_drop64, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_64, columns=False, w_or_a='a')
+columns_drop65 = ['Unnamed: 7', 'Unnamed: 27', 'price, $']
+df_shape_65.drop(columns_drop65, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_65, columns=False, w_or_a='a')
+columns_drop66 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
+df_shape_66.drop(columns_drop66, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_66, columns=False, w_or_a='a')
+columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 35']
+df_shape_67.drop(columns_drop67, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_67, columns=False, w_or_a='a')
+columns_drop68 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 27', '$.2']
+df_shape_68.drop(columns_drop68, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_68, columns=False, w_or_a='a')
+df_united = pd.read_csv('united_pay_file.csv')
+save_excel('united_pay_file_2019.xlsx', df_united, columns_for_excel)
 print("--- %s seconds ---" % (time.time() - start_time))
