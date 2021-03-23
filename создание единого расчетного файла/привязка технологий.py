@@ -22,7 +22,7 @@ for i in range(len(cod_baan)):
     full_cod = [x for x in cod_baan[i] if x.isalpha() == False]
     df_full_cod.append(''.join(full_cod))
 df_pay_data = df_pay_data.assign(full_cod1=df_full_cod)
-save_csv_header_w('full_pay.csv', df_pay_data)
+save_csv_header_w('full_pay_2019.csv', df_pay_data)
 
 df_table = pd.read_excel('TABLE ARCHIVE.xlsx')
 df_cod_baan = df_table.loc[:, 'REF_BAAN']
