@@ -218,8 +218,8 @@ def shape_67(address_file, number=67):
 
 start_time = time.time()
 
-# search_by_numder_order('good_file2019(xls).csv')
-# list_shape_fyn('address_and_order.csv')
+# search_by_numder_order('good_file2020(xls).csv')
+list_shape_fyn('address_and_order.csv')
 df = pd.read_csv('открылись.csv', names=['path', 'order', 'shape'])
 list_shape = df['shape'].unique()
 print(list_shape)
