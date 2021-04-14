@@ -16,14 +16,14 @@ def csv_writer_spisok(data, path):
 
 start_time = time.time()
 # encoding='utf-8'
-way_list_xls = glob.glob(
-    'W:\\Theoretical Planning\\All foto cmd\\Архив 2020\Архив 2020\\**\\*.xls',
-    recursive=True)
-name = "C:\\Python's_project\\RTB-job\создание единого расчетного файла\\new_general_address_file2020(xls).csv"
-csv_writer_spisok(way_list_xls, name)
+# way_list_xls = glob.glob(
+    # 'W:\\Theoretical Planning\\02 - Бланки заказов (All foto cmd)\\**\\*.xls',
+    # recursive=True)
+# name = "C:\\Python's_project\\RTB-job\создание единого расчетного файла\\new_general_address_file2021(xls).csv"
+# csv_writer_spisok(way_list_xls, name)
 way_list_xlsx = glob.glob(
-    'W:\\Theoretical Planning\\All foto cmd\\Архив 2020\Архив 2020\\**\\*.xlsx',
+    'W:\\Theoretical Planning\\02 - Бланки заказов (All foto cmd)\\**\\*.xlsx',
     recursive=True)
-name = "C:\\Python's_project\\RTB-job\создание единого расчетного файла\\new_general_address_file2020(xlsx).csv"
+name = "C:\\Python's_project\\RTB-job\создание единого расчетного файла\\new_general_address_file2021(xlsx).csv"
 csv_writer_spisok(way_list_xlsx, name)
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -218,7 +218,7 @@ def shape_67(address_file, number=67):
 
 start_time = time.time()
 
-# search_by_numder_order('good_file2020(xls).csv')
+# search_by_numder_order('good_file2021(xls).csv')
 # list_shape_fyn('address_and_order.csv')
 df = pd.read_csv('открылись.csv', names=['path', 'order', 'shape'])
 list_shape = df['shape'].unique()
@@ -229,15 +229,15 @@ print(list_shape)
 # shape_65('открылись.csv')
 # shape_66('открылись.csv')
 # shape_67('открылись.csv')
-
+'''
 df_shape_62 = pd.read_csv('shape_62.csv')
 df_shape_63 = pd.read_csv('shape_63.csv')
 df_shape_64 = pd.read_csv('shape_64.csv')
 df_shape_65 = pd.read_csv('shape_65.csv')
-# df_shape_66 = pd.read_csv('shape_66.csv')
-# df_shape_67 = pd.read_csv('shape_67.csv')
-# df_shape_68 = pd.read_csv('shape_68.csv')
-
+df_shape_66 = pd.read_csv('shape_66.csv')
+df_shape_67 = pd.read_csv('shape_67.csv')
+df_shape_68 = pd.read_csv('shape_68.csv')
+'''
 columns_for_excel = ['обозначение',
                      'наименование',
                      'индекс',
@@ -301,28 +301,28 @@ columns_for_excel = ['обозначение',
                      'т_партии_ч',
                      'номер_заказа']
 print(len(columns_for_excel))
-
-save_csv_header_w('united_pay_file_2020.csv', df_shape_62, columns=False)
-columns_drop63 = ['price, $']
+'''
+save_csv_header_w('united_pay_file_2021.csv', df_shape_62, columns=False)
+columns_drop63 = ['price']
 df_shape_63.drop(columns_drop63, inplace=True, axis=1)
-save_csv_header_w('united_pay_file_2020.csv', df_shape_63, columns=False, w_or_a='a')
+save_csv_header_w('united_pay_file_2021.csv', df_shape_63, columns=False, w_or_a='a')
 columns_drop64 = ['Unnamed: 7', 'price, $']
 df_shape_64.drop(columns_drop64, inplace=True, axis=1)
-save_csv_header_w('united_pay_file_2020.csv', df_shape_64, columns=False, w_or_a='a')
-columns_drop65 = ['..\..\..\Department - Quality\Metrology\Calibers', 'Unnamed: 27', 'price, $']
+save_csv_header_w('united_pay_file_2021.csv', df_shape_64, columns=False, w_or_a='a')
+columns_drop65 = ['Unnamed: 8', 'Unnamed: 24', 'price']
 df_shape_65.drop(columns_drop65, inplace=True, axis=1)
 save_csv_header_w('united_pay_file.csv', df_shape_65, columns=False, w_or_a='a')
-# columns_drop66 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
-# df_shape_66.drop(columns_drop66, inplace=True, axis=1)
-# save_csv_header_w('united_pay_file.csv', df_shape_66, columns=False, w_or_a='a')
-# columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 35']
-# df_shape_67.drop(columns_drop67, inplace=True, axis=1)
-# save_csv_header_w('united_pay_file.csv', df_shape_67, columns=False, w_or_a='a')
-# columns_drop68 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 27', '$.2']
-# df_shape_68.drop(columns_drop68, inplace=True, axis=1)
-# save_csv_header_w('united_pay_file_2020.csv', df_shape_68, columns=False, w_or_a='a')
+columns_drop66 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
+df_shape_66.drop(columns_drop66, inplace=True, axis=1)
+save_csv_header_w('united_pay_file.csv', df_shape_66, columns=False, w_or_a='a')
+columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'price']
+df_shape_67.drop(columns_drop67, inplace=True, axis=1)
+save_csv_header_w('united_pay_file_2021.csv', df_shape_67, columns=False, w_or_a='a')
+olumns_drop68 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'Unnamed: 27', '$.2']
+df_shape_68.drop(columns_drop68, inplace=True, axis=1)
+save_csv_header_w('united_pay_file_2020.csv', df_shape_68, columns=False, w_or_a='a')
+'''
 print('next')
-input()
-df_united = pd.read_csv('united_pay_file_2020.csv')
-save_excel('united_pay_file_2020.xlsx', df_united, columns_for_excel)
+df_united = pd.read_csv('united_pay_file_2021.csv')
+save_excel('united_pay_file_2021.xlsx', df_united, columns_for_excel)
 print("--- %s seconds ---" % (time.time() - start_time))
