@@ -47,7 +47,7 @@ def save_excel(path, data_frame, columns):
 
 
 start_time = time.time()
-df_pay = pd.read_csv('full_pay_20019-2020.csv')
+df_pay = pd.read_csv('full_pay_2019-2020.csv')
 df_table = pd.read_csv('table_arch.csv', low_memory=False)
 df_pay = df_pay.fillna(0)
 df_table = df_table.fillna(0)

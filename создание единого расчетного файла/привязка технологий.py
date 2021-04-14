@@ -19,7 +19,7 @@ def transformation_pay(path):
         full_cod = [x for x in cod_baan[i] if x.isalpha() == False]
         df_full_cod.append(''.join(full_cod))
     df_pay_data = df_pay_data.assign(full_cod1=df_full_cod)
-    save_csv_header_w('full_pay_2020.csv', df_pay_data)
+    save_csv_header_w('full_pay_2021.csv', df_pay_data)
 
 
 def transformation_table_courant(path):
@@ -60,6 +60,6 @@ start_time = time.time()
 a = 's pam123.456-01'
 b = [x for x in a if x.isalpha() == False]
 print(b)
-transformation_pay('united_pay_file_2020.xlsx')
+transformation_pay('united_pay_file_2021.xlsx')
 
 print("--- %s seconds ---" % (time.time() - start_time))
