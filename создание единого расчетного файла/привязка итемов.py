@@ -36,7 +36,7 @@ def save_csv_header_w(path, data_frame, columns=True, w_or_a='w'):
 
 
 start_time = time.time()
-df_pay = pd.read_csv('full_pay_2020.csv')
+df_pay = pd.read_csv('full_pay_2019-2021.csv')
 df_table = pd.read_csv('table_arch.csv', low_memory=False)
 df_pay = df_pay.fillna(0)
 df_table = df_table.fillna(0)
@@ -50,5 +50,5 @@ for i in range(counter):
 columns = ['item', 'number_cmd', 'PRODUIT', 'N°PIECE', 'IND PROD', 'REF_BAAN', 'full_cod1', 'обозначение',
            'номер_заказа']
 df_link_table = pd.DataFrame(data=link_table, columns=columns)
-save_csv_header_w('link_table_2020.csv', df_link_table)
+save_csv_header_w('link_table_2019-2021.csv', df_link_table)
 print("--- %s seconds ---" % (time.time() - start_time))

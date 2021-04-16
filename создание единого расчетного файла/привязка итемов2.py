@@ -14,6 +14,7 @@ def append_in_list(k, data, data_pay):
         link_table_1.append(data.loc[k, 'REF_BAAN'])
         link_table_1.append(data_pay.loc[0, 'full_cod1'])
         link_table_1.append(data_pay.loc[0, 'обозначение'])
+        link_table_1.append(data_pay.loc[0, 'индекс'])
         link_table_1.append(data_pay.loc[0, 'номер_заказа'])
         return link_table_1
     else:
@@ -24,7 +25,7 @@ def append_in_list(k, data, data_pay):
         link_table_1.append(str(int(data.loc[k, 'N°PIECE'])))
         link_table_1.append(data.loc[k, 'IND PROD'])
         link_table_1.append(data.loc[k, 'REF_BAAN'])
-        for g in range(3):
+        for g in range(4):
             link_table_1.append(0)
         return link_table_1
 
@@ -47,7 +48,7 @@ def save_excel(path, data_frame, columns):
 
 
 start_time = time.time()
-df_pay = pd.read_csv('full_pay_2019-2021.csv')
+df_pay = pd.read_csv('full_pay_2019-2021.csv', low_memory=False)
 df_table = pd.read_csv('table_arch.csv', low_memory=False)
 df_pay = df_pay.fillna(0)
 df_table = df_table.fillna(0)
@@ -59,7 +60,8 @@ for i in range(counter):
     link_table.append(link_1)
 
 columns = ['item', 'number_cmd', 'COMMENTAIRE PROD', 'PRODUIT', 'N°PIECE', 'IND PROD', 'REF_BAAN', 'full_cod1',
-           'обозначение', 'номер_заказа']
+           'обозначение', 'индекс', 'номер_заказа']
 df_link_table = pd.DataFrame(data=link_table, columns=columns)
 save_csv_header_w('link_table_2019-2021rev2.csv', df_link_table)
+
 print("--- %s seconds ---" % (time.time() - start_time))
