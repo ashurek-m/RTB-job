@@ -1,0 +1,131 @@
+<issuance sender="100570992">
+    <system><modelVersion>1.2.0</modelVersion></system>
+    <general>
+        <number>100570992-2021-9999999999</number>
+        <dateIssuance>2020-01-01</dateIssuance>
+        <dateTransaction>2020-01-01</dateTransaction>
+        <documentType>ORIGINAL</documentType>
+    </general>
+    <provider>
+        <providerStatus>SELLER</providerStatus>
+        <dependentPerson>false</dependentPerson>
+        <residentsOfOffshore>false</residentsOfOffshore>
+        <specialDealGoods>false</specialDealGoods>
+        <bigCompany>false</bigCompany>
+        <countryCode>112</countryCode>
+        <unp>100570992</unp>
+        <name>ООО "РЕСИФ Технологии Бел"</name>
+        <address>222210, Республика Беларусь, Минская область, Смолевичский район, Китайско-Белорусский индустриальный парк «Великий камень»</address>
+    </provider>
+    <recipient>
+        <recipientStatus>CUSTOMER</recipientStatus>
+        <dependentPerson>false</dependentPerson>
+        <residentsOfOffshore>false</residentsOfOffshore>
+        <specialDealGoods>false</specialDealGoods>
+        <bigCompany>false</bigCompany>
+        <countryCode>112</countryCode>
+        <unp>100230519</unp>
+        <name>ОАО "Пеленг"</name>
+        <address>РБ, 220114, г. Минск, ул. Макаенка, 25</address>
+    </recipient>
+    <senderReceiver>
+        <consignors>
+            <consignor>
+                <countryCode>112</countryCode>
+                <unp>100570992</unp>
+                <name>ООО "РЕСИФ Технологии Бел"</name>
+                <address>РБ, г. Минск, ул. Корженевского, 14</address>
+            </consignor>
+        </consignors>
+        <consignees>
+            <consignee>
+                <countryCode>112</countryCode>
+                <unp>100230519</unp>
+                <name>ОАО "Пеленг"</name>
+                <address>РБ, г. Минск, ул. Макаенка, 17В</address>
+            </consignee>
+        </consignees>
+    </senderReceiver>
+    <deliveryCondition>
+        <contract>
+            <number>51/7395-2021</number>
+            <date>2021-02-10</date>
+            <documents>
+                <document>
+                    <docType>
+                        <code>603</code>
+                    </docType>
+                    <date>2021-04-09</date>
+                    <blankCode>402962</blankCode>
+                    <seria>ЕШ</seria>
+                    <number>0355619</number>
+                </document>
+            </documents>
+        </contract>
+    </deliveryCondition>
+    <roster totalCost="5520.2" totalVat="1104.04" totalExcise="0.00" totalCostVat="6624.24">
+        <rosterItem>
+            <number>1</number>
+            <name>Основание 7084.15.00.061</name>
+            <code/>
+            <units>796</units>
+            <count>28</count>
+            <price>42.2</price>
+            <cost>1181.6</cost>
+            <summaExcise>0.00</summaExcise>
+            <vat>
+                <rate>20</rate>
+                <rateType>DECIMAL</rateType>
+                <summaVat>236.32</summaVat>
+            </vat>
+            <costVat>1417.92</costVat>
+        </rosterItem>
+        <rosterItem>
+            <number>2</number>
+            <name>Рычаг 7685.10.05.103</name>
+            <code/>
+            <units>796</units>
+            <count>4</count>
+            <price>209.6</price>
+            <cost>838.4</cost>
+            <summaExcise>0.00</summaExcise>
+            <vat>
+                <rate>20</rate>
+                <rateType>DECIMAL</rateType>
+                <summaVat>167.68</summaVat>
+            </vat>
+            <costVat>1006.08</costVat>
+        </rosterItem>
+        <rosterItem>
+            <number>3</number>
+            <name>Упор 7685.31.00.001</name>
+            <code/>
+            <units>796</units>
+            <count>10</count>
+            <price>130.5</price>
+            <cost>1305</cost>
+            <summaExcise>0.00</summaExcise>
+            <vat>
+                <rate>20</rate>
+                <rateType>DECIMAL</rateType>
+                <summaVat>261</summaVat>
+            </vat>
+            <costVat>1566</costVat>
+        </rosterItem><rosterItem>
+        <number>4</number>
+        <name>Ось 7685.31.00.474</name>
+        <code/>
+        <units>796</units>
+        <count>28</count>
+        <price>78.4</price>
+        <cost>2195.2</cost>
+        <summaExcise>0.00</summaExcise>
+        <vat>
+            <rate>20</rate>
+            <rateType>DECIMAL</rateType>
+            <summaVat>439.04</summaVat>
+        </vat>
+        <costVat>2634.24</costVat>
+    </rosterItem>
+    </roster>
+</issuance>

@@ -7,5 +7,5 @@ def save_excel(path, data_frame, columns=True):
     writer_on.save()
 
 
-df = pd.read_csv('full_pay_2019-2021.csv')
-save_excel('full_pay_2019-2021.xlsx', df)
+df = pd.read_csv('link_table_2019-2021rev2.csv')
+save_excel('link_table_2019-2021rev2.xlsx', df)
