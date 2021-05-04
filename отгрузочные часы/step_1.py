@@ -33,6 +33,7 @@ def file_search():
         recursive=True)
     name1 = "C:\\Python's_project\\RTB-job\\отгрузочные часы\\new_general_address_file2021(xlsx).csv"
     csv_writer_spisok(way_list_xlsx, name1)
+    return ['new_general_address_file2021(xls).csv', 'new_general_address_file2021(xlsx).csv']
 
 
 def search_by_client(address_file, year):
@@ -43,11 +44,13 @@ def search_by_client(address_file, year):
         file_adrress_client = []
         name_file = file[i].split("\\")
         try:
-            num_order = int(name_file[-1][:5])
-            file_adrress_client.append(file[i])
-            file_adrress_client.append(num_order)
-            address_file_client.append(file_adrress_client)
+            if not 'рхив' in name_file[-2]:
+                num_order = int(name_file[-1][:5])
+                file_adrress_client.append(file[i])
+                file_adrress_client.append(num_order)
+                address_file_client.append(file_adrress_client)
         except ValueError:
             continue
-    name = 'address_and_order_' + year + '.csv'
+    name = 'address_and_order_' + str(year) + '.csv'
     csv_writer(address_file_client, name)
+    return name
