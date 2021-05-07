@@ -33,6 +33,7 @@ def list_shape_fyn(list_addres):
 def analysis(data_file):
     df = pd.read_csv(data_file, names=['path', 'order', 'shape'])
     list_shape = df['shape'].unique()
+    list_shape.sort()
     print(list_shape)
     return list_shape
 
@@ -63,3 +64,4 @@ def shape_(address_file, number):
     writer = pd.ExcelWriter(name_file_exel, engine='xlsxwriter')
     save_excel.to_excel(writer, sheet_name='расчет', index=False)
     writer.save()
+    return name_file_csv

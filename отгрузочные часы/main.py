@@ -1,5 +1,6 @@
 import step_1 as s1
 import step_2 as s2
+import step_3 as s3
 
 
 if __name__ in '__main__':
@@ -11,6 +12,11 @@ if __name__ in '__main__':
     path_3 = s2.list_shape_fyn(path_2)
     print('4')
     shape_list = s2.analysis(path_3)
+    # shape_list отсортирован по возростанию
     print('5')
-    for numder in shape_list:
-        s2.shape_(path_3, numder)
+    name_list_shape = []
+    for number in shape_list:
+        name_file = s2.shape_(path_3, number)
+        name_list_shape.append(name_file)
+    print('6')
+    s3.union(shape_list, name_list_shape)
