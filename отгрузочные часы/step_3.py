@@ -6,7 +6,7 @@ def save_csv_header_w(path, data_frame, columns=True, w_or_a='w'):
     data_frame.to_csv(path, mode=w_or_a, encoding='utf-8', index=False, header=columns)
 
 
-def union(shape_list, name_file):
+def union(shape_list, name_file, name):
     for i in range(len(shape_list)):
         if shape_list[i] == 62:
             df_62 = pd.read_csv(name_file[i])
@@ -18,7 +18,7 @@ def union(shape_list, name_file):
             save_csv_header_w('united_pay_file_2021.csv', df_63, columns=False, w_or_a='a')
         elif shape_list[i] == 64:
             df_64 = pd.read_csv(name_file[i])
-            columns_drop64 = ['Unnamed: 7', 'price, $']
+            columns_drop64 = ['..\..\..\Department - Quality\Metrology\Calibers', 'price, $']
             df_64.drop(columns_drop64, inplace=True, axis=1)
             save_csv_header_w('united_pay_file_2021.csv', df_64, columns=False, w_or_a='a')
         elif shape_list[i] == 65:
@@ -99,7 +99,9 @@ def union(shape_list, name_file):
                      'т_партии_ч',
                      'номер_заказа']
     df_united = pd.read_csv('united_pay_file_2021.csv')
-    s2.save_excel('united_pay_file_2021.xlsx', df_united, columns_for_excel)
+    s2.save_excel(name, df_united, columns_for_excel)
+    # добавить добавления столбца с годом
+
 
 '''
 columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'price']

@@ -19,4 +19,4 @@ if __name__ in '__main__':
         name_file = s2.shape_(path_3, number)
         name_list_shape.append(name_file)
     print('6')
-    s3.union(shape_list, name_list_shape)
+    s3.union(shape_list, name_list_shape, 'union_file_05_05_2021.xlsx')
