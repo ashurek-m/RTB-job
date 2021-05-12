@@ -97,8 +97,7 @@ def union(shape_list, name_file, name):
                          'резерв_т_маш_мин',
                          'резерв_т_сум_ч',
                          'т_партии_ч',
-                         'номер_заказа',
-                         'year']
+                         'номер_заказа']
     df_united = pd.read_csv('united_pay_file_2021.csv')
     s2.save_excel(name, df_united, columns_for_excel)
 
