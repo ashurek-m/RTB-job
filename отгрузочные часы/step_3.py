@@ -1,5 +1,4 @@
 import pandas as pd
-import step_2 as s2
 
 
 def save_csv_header_w(path, data_frame, columns=True, w_or_a='w'):
@@ -98,8 +97,9 @@ def union(shape_list, name_file, name):
                          'резерв_т_сум_ч',
                          'т_партии_ч',
                          'номер_заказа']
-    df_united = pd.read_csv('united_pay_file_2021.csv')
-    s2.save_excel(name, df_united, columns_for_excel)
+    df_united = pd.read_csv('united_pay_file_2021.csv', names=columns_for_excel)
+    save_csv_header_w(name, df_united)
+    return name
 
 
 '''
