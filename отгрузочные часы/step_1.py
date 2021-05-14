@@ -21,19 +21,18 @@ def csv_writer(data, path):
         csv_file.close()
 
 
-def file_search():
-    way_list_xls = glob.glob(
-        'W:\\Theoretical Planning\\02 - Бланки заказов (All foto cmd)\\**\\*.xls',
-        recursive=True)
-    name = "C:\\Python's_project\\RTB-job\\отгрузочные часы\\new_general_address_file2021(xls).csv"
-    csv_writer_spisok(way_list_xls, name)
-
+def file_search(way, name):
+    way_list_xls = glob.glob(way, recursive=True)
+    name_ = name
+    csv_writer_spisok(way_list_xls, name_)
+    '''
     way_list_xlsx = glob.glob(
         'W:\\Theoretical Planning\\02 - Бланки заказов (All foto cmd)\\**\\*.xlsx',
         recursive=True)
     name1 = "C:\\Python's_project\\RTB-job\\отгрузочные часы\\new_general_address_file2021(xlsx).csv"
     csv_writer_spisok(way_list_xlsx, name1)
-    return ['new_general_address_file2021(xls).csv', 'new_general_address_file2021(xlsx).csv']
+    '''
+    return [name, 'new_general_address_file2021(xlsx).csv']
 
 
 def search_by_client(address_file, year):
