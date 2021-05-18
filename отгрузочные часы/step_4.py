@@ -16,6 +16,7 @@ def transformation_pay(path, name, year_1):
         df_full_cod.append(''.join(full_cod))
     df_pay_data = df_pay_data.assign(full_cod1=df_full_cod)
     df_pay_data = df_pay_data.assign(year=year_1)
+    df_pay_data.fillna(0)
     s3.save_csv_header_w(name, df_pay_data)
 
 
