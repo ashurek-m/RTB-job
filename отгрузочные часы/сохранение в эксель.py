@@ -7,7 +7,7 @@ def save_excel(path, data_frame, columns=True):
     writer_on.save()
 
 
-df = pd.read_csv('full_union_file_2020.csv')
-df = df.assign(year=2020)
-df = df.fillna(0)
-save_excel('full_pay_2020.xlsx', df)
+df = pd.read_csv('full_union_file_2021.csv')
+df = df.assign(year=2021)
+#df = df.fillna(0)
+save_excel('full_pay_2021.xlsx', df)
