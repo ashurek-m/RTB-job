@@ -111,7 +111,8 @@
                 <summaVat>261</summaVat>
             </vat>
             <costVat>1566</costVat>
-        </rosterItem><rosterItem>
+        </rosterItem>
+        <rosterItem>
         <number>4</number>
         <name>Ось 7685.31.00.474</name>
         <code/>
