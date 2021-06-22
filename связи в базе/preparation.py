@@ -56,3 +56,9 @@ def filter_link(k, data, data_pay):
     df_filter_table_2 = df_filter_table_1[df_filter_table_1['full_cod1'] == data.loc[k, 'full_cod3']].reset_index(
         drop=True)
     return df_filter_table_2
+
+
+def save_excel(path, data_frame, columns=True):
+    writer_on = pd.ExcelWriter(path, engine='xlsxwriter')
+    data_frame.to_excel(writer_on, index=False, header=columns)
+    writer_on.save()
