@@ -38,10 +38,10 @@ if __name__ in '__main__':
         df_link_table = pd.DataFrame(data=link_table, columns=columns)
         prepa.save_csv_header_w('link_table.csv', df_link_table)
     elif var == 2:
-        df_pay = pd.read_excel('pay_2021_rev1.xlsx')
+        df_pay = pd.read_excel('pay_2019_rev1.xlsx')
         df_pay_groupby = df_pay.groupby(['обозначение', 'индекс']).size().reset_index()
         shape1 = df_pay_groupby.shape[0]
-        id_pay = [100000]
+        id_pay = [105867]
         for i in range(1, shape1):
             id_pay.append(id_pay[i - 1] + 1)
         df_pay_groupby = df_pay_groupby.assign(id_name_pay=id_pay)
