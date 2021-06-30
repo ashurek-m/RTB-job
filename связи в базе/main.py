@@ -54,7 +54,8 @@ if __name__ in '__main__':
     elif var == 4:
         df = pd.read_excel('pay_id_name.xlsx')
         df_pay_groupby = df.groupby('обозначение').size().reset_index()
-        df_pay_groupby.info()
+
+
 
 
 
