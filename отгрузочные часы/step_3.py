@@ -22,18 +22,19 @@ def shape_r62(shape_list, name_file):
             save_csv_header_w('united_pay_file_2021.csv', df_64, columns=False, w_or_a='a')
         elif shape_list[i] == 65:
             df_65 = pd.read_csv(name_file[i])
-            columns_drop65 = ['Unnamed: 8', 'Unnamed: 9', 'price']
+            columns_drop65 = ['Unnamed: 7', 'Unnamed: 12', 'price']
             df_65.drop(columns_drop65, inplace=True, axis=1)
-            save_csv_header_w('united_pay_file.csv', df_65, columns=False, w_or_a='a')
+            save_csv_header_w('united_pay_file_2021.csv', df_65, columns=False, w_or_a='a')
         elif shape_list[i] == 66:
             df_66 = pd.read_csv(name_file[i])
             columns_drop66 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
             df_66.drop(columns_drop66, inplace=True, axis=1)
-            save_csv_header_w('united_pay_file.csv', df_66, columns=False, w_or_a='a')
+            save_csv_header_w('united_pay_file_2021.csv', df_66, columns=False, w_or_a='a')
         elif shape_list[i] == 67:
             df_67 = pd.read_csv(name_file[i])
             columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'price']
             df_67.drop(columns_drop67, inplace=True, axis=1)
+            save_csv_header_w('united_pay_file_2021.csv', df_67, columns=False, w_or_a='a')
 
 
 def shape_r61(shape_list, name_file):
@@ -59,12 +60,12 @@ def shape_r61(shape_list, name_file):
             df_65 = pd.read_csv(name_file[i])
             columns_drop65 = ['..\..\..\Department - Quality\Metrology\Calibers', 'Unnamed: 27', 'price, $']
             df_65.drop(columns_drop65, inplace=True, axis=1)
-            save_csv_header_w('united_pay_file.csv', df_65, columns=False, w_or_a='a')
+            save_csv_header_w('united_pay_file_2021.csv', df_65, columns=False, w_or_a='a')
         elif shape_list[i] == 66:
             df_66 = pd.read_csv(name_file[i])
             columns_drop66 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10']
             df_66.drop(columns_drop66, inplace=True, axis=1)
-            save_csv_header_w('united_pay_file.csv', df_66, columns=False, w_or_a='a')
+            save_csv_header_w('united_pay_file_2021.csv', df_66, columns=False, w_or_a='a')
         elif shape_list[i] == 67:
             df_67 = pd.read_csv(name_file[i])
             columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'price']

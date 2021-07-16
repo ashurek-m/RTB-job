@@ -14,6 +14,7 @@ if __name__ in '__main__':
     path_3 = s2.list_shape_fyn(path_2)
     print('4 - печать на экран списка с размером')
     shape_list = s2.analysis(path_3)
+    print(len(shape_list))
     # shape_list отсортирован по возростанию
     print('5 - группировка и сохранение одинаковых по количеству столбцов расчетных файлов')
     name_list_shape = []
@@ -27,4 +28,4 @@ if __name__ in '__main__':
     if a == '1':
         path_4 = s3.union(shape_list, name_list_shape, 'union_file_2021.csv')
     print('7 - трансформация файла для внесения в акссес')
-    s4.transformation_pay(path_4, 'full_union_file_2021_02_07_2021.csv', 2021)
+    s4.transformation_pay(path_4, 'full_union_file_2021_16_07_2021.csv', 2021)
