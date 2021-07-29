@@ -28,4 +28,4 @@ if __name__ in '__main__':
     if a == '1':
         path_4 = s3.union(shape_list, name_list_shape, 'union_file_2021.csv')
     print('7 - трансформация файла для внесения в акссес')
-    s4.transformation_pay(path_4, 'full_union_file_2021_16_07_2021.csv', 2021)
+    s4.transformation_pay(path_4, 'full_union_file_2021_19_07_2021.csv', 2021)
