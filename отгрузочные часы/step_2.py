@@ -12,6 +12,7 @@ def list_shape_fyn(list_addres):
     for i in range(len(df_data_addres)):
         try:
             shape_list_1 = []
+            print(df_data.loc[i, 'order'])
             df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
             df_file = df_file.loc[:, 'Unnamed: 0': 'час']
             shape_list_1.append(df_data_addres[i])
@@ -24,6 +25,7 @@ def list_shape_fyn(list_addres):
         except FileNotFoundError:
             not_found_list.append(df_data_addres[i])
             continue
+
     s1.csv_writer_spisok(error_list, 'странные файлы.csv')
     s1.csv_writer_spisok(not_found_list, 'нет файлов.csv')
     s1.csv_writer(shape_list_2, 'открылись.csv')
