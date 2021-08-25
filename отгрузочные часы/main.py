@@ -16,16 +16,20 @@ if __name__ in '__main__':
     shape_list = s2.analysis(path_3)
     print(len(shape_list))
     # shape_list отсортирован по возростанию
-    print('5 - группировка и сохранение одинаковых по количеству столбцов расчетных файлов')
-    name_list_shape = []
-    for number in shape_list:
-        name_file = s2.shape_(path_3, number)
-        name_list_shape.append(name_file)
-    print(name_list_shape)
-    print('6 - удаление лишних столбцов, приведение расчетных файлов к одной размерности, формирование документа.\n'
-          'Для продолжение работы введите 1.')
-    a = input('a = ')
-    if a == '1':
-        path_4 = s3.union(shape_list, name_list_shape, 'union_file_2021.csv')
-    print('7 - трансформация файла для внесения в акссес')
-    s4.transformation_pay(path_4, 'full_union_file_2021_19_07_2021.csv', 2021)
+    b = input('b = ')
+    if b == 0:
+        print('5 - группировка и сохранение одинаковых по количеству столбцов расчетных файлов')
+        name_list_shape = []
+        for number in shape_list:
+            name_file = s2.shape_(path_3, number)
+            name_list_shape.append(name_file)
+        print(name_list_shape)
+        print('6 - удаление лишних столбцов, приведение расчетных файлов к одной размерности, формирование документа.\n'
+              'Для продолжение работы введите 1.')
+        a = input('a = ')
+        if a == '1':
+            path_4 = s3.union(shape_list, name_list_shape, 'union_file_2021.csv')
+        print('7 - трансформация файла для внесения в акссес')
+        s4.transformation_pay(path_4, 'full_union_file_2021_19_07_2021.csv', 2021)
+    elif b == 1:
+        print(3)
