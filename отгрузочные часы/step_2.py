@@ -12,7 +12,7 @@ def list_shape_fyn(list_addres):
     for i in range(len(df_data_addres)):
         try:
             shape_list_1 = []
-            print(df_data.loc[i, 'order'])
+            #print(df_data.loc[i, 'order'])
             df_file = pd.read_excel(str(df_data_addres[i]), sheet_name='расчет', header=13)
             df_file = df_file.loc[:, 'Unnamed: 0': 'час']
             shape_list_1.append(df_data_addres[i])

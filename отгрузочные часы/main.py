@@ -16,7 +16,7 @@ if __name__ in '__main__':
     shape_list = s2.analysis(path_3)
     print(len(shape_list))
     # shape_list отсортирован по возростанию
-    b = input('b = ')
+    b = int(input('b = '))
     if b == 0:
         print('5 - группировка и сохранение одинаковых по количеству столбцов расчетных файлов')
         name_list_shape = []
@@ -30,6 +30,6 @@ if __name__ in '__main__':
         if a == '1':
             path_4 = s3.union(shape_list, name_list_shape, 'union_file_2021.csv')
         print('7 - трансформация файла для внесения в акссес')
-        s4.transformation_pay(path_4, 'full_union_file_2021_19_07_2021.csv', 2021)
+        s4.transformation_pay(path_4, 'full_union_file_2021_06_09_2021.csv', 2021)
     elif b == 1:
         print(3)
