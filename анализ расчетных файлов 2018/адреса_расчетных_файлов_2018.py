@@ -1,23 +1,22 @@
 import pandas as pd
 import xlrd
 import time
-import os, glob, csv
+import csv
 
-def spisok_spiskov(data):
+
+def csv_writer_spisok(data, path):
     new_list = []
     for i in range(len(data)):
-       listys = [data[i]]
-       new_list.append(listys)
-    return new_list
-
-def csv_writer(data, path):
+        listys = [data[i]]
+        new_list.append(listys)
     with open(path, "w", encoding='utf-8', newline='') as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerows(data)
+        writer.writerows(new_list)
         csv_file.close()
 
+
 start_time = time.time()
-csv1 = pd.read_csv(r"C:\Python's_project\RTB-job\address_file1.csv", names=['path'])
+csv1 = pd.read_csv("C:\\Python's_project\\RTB-job\\создание единого расчетного файла\\new_general_address_file.csv", names=['path'])
 clean_address = csv1.loc[:, 'path']
 sum1 = 0
 sum2 = 0
@@ -44,8 +43,6 @@ print(len(clean_address))
 print(f'открылось файлов {sum1}')
 print(f'не открылось файлов из-за отсуствия листа расчет {sum2}')
 print(f'не открылось по другой причине {sum3}')
-path = "good_address_file1.csv"
-path1 = "error_address_file1.csv"
-csv_writer(spisok_spiskov(good_list), path)
-csv_writer(spisok_spiskov(error_list), path1)
+names = "C:\\Python's_project\\RTB-job\\создание единого расчетного файла\\good_file2017(xls).csv"
+csv_writer_spisok(good_list, names)
 print("--- %s seconds ---" % (time.time() - start_time))
