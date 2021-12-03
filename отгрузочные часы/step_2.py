@@ -10,6 +10,7 @@ def list_shape_fyn(list_addres):
     error_list = []
     not_found_list = []
     for i in range(len(df_data_addres)):
+        print(df_data.loc[i, ['order']])
         try:
             shape_list_1 = []
             #print(df_data.loc[i, 'order'])
@@ -25,6 +26,8 @@ def list_shape_fyn(list_addres):
         except FileNotFoundError:
             not_found_list.append(df_data_addres[i])
             continue
+        except ValueError:
+            error_list.append(df_data_addres[i])
 
     s1.csv_writer_spisok(error_list, 'странные файлы.csv')
     s1.csv_writer_spisok(not_found_list, 'нет файлов.csv')
