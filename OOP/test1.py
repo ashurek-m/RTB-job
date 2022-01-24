@@ -23,7 +23,7 @@ class Purse:
     атрибуты - все имена в классе: переменных и методов
     '''
     def __init__(self, valute, name='Unknown'):
-        if valute not in ('USD', 'EUR')
+        if valute not in ('USD', 'EUR'):
             raise ValueError
         self.__money = 0.00
         self.valute = valute
