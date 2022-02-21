@@ -6,7 +6,7 @@ import step_4 as s4
 
 if __name__ in '__main__':
     print('1 - формирование адресов расчетных файлов запущенных в производство')
-    path_1 = s1.file_search(name='new_general_address_file2021(xls).csv',
+    path_1 = s1.file_search(name='new_general_address_file2022(xls).csv',
                             way='W:\\Theoretical Planning\\02 - Бланки заказов (All foto cmd)\\**\\*xls')
     print('2 - добавления номера заказа к адресу и отсеивание архивных файлов')
     path_2 = s1.search_by_client(path_1[0], 2021)
@@ -30,6 +30,6 @@ if __name__ in '__main__':
         if a == '1':
             path_4 = s3.union(shape_list, name_list_shape, 'union_file_2021.csv')
         print('7 - трансформация файла для внесения в акссес')
-        s4.transformation_pay(path_4, 'full_union_file_2021_04_11_2021.csv', 2021)
+        s4.transformation_pay(path_4, 'full_union_file_2021_04_02_2022.csv', 2021)
     elif b == 1:
         print(3)

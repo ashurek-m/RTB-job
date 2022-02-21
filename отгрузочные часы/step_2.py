@@ -10,7 +10,7 @@ def list_shape_fyn(list_addres):
     error_list = []
     not_found_list = []
     for i in range(len(df_data_addres)):
-        print(df_data.loc[i, ['order']])
+        #print(df_data.loc[i, ['order']])
         try:
             shape_list_1 = []
             #print(df_data.loc[i, 'order'])

@@ -17,7 +17,7 @@ def shape_r62(shape_list, name_file):
             save_csv_header_w('united_pay_file_2021.csv', df_63, columns=False, w_or_a='a')
         elif shape_list[i] == 64:
             df_64 = pd.read_csv(name_file[i])
-            columns_drop64 = ['..\..\..\Department - Quality\Metrology\Calibers', 'price, $']
+            columns_drop64 = ['Unnamed: 11', 'price, $']
             df_64.drop(columns_drop64, inplace=True, axis=1)
             save_csv_header_w('united_pay_file_2021.csv', df_64, columns=False, w_or_a='a')
         elif shape_list[i] == 65:
@@ -32,7 +32,7 @@ def shape_r62(shape_list, name_file):
             save_csv_header_w('united_pay_file_2021.csv', df_66, columns=False, w_or_a='a')
         elif shape_list[i] == 67:
             df_67 = pd.read_csv(name_file[i])
-            columns_drop67 = ['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 10', 'price']
+            columns_drop67 = ['price', 'расчёт', 'после анализа технологического отдела', 'расчёт.1', 'после анализа технологического отдела.1']
             df_67.drop(columns_drop67, inplace=True, axis=1)
             save_csv_header_w('united_pay_file_2021.csv', df_67, columns=False, w_or_a='a')
 
