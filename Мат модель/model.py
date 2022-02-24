@@ -1,9 +1,11 @@
 from pulp import LpMaximize, LpProblem, LpStatus, lpSum, LpVariable
+import pandas as pd
 
-model = LpProblem(name="small-problem", sense=LpMaximize)
-x = LpVariable(name="x", lowBound=0)
-fun_max = 8 * x
-model += fun_max
-print(model)
-
-'''https://proglib.io/p/lineynoe-programmirovanie-praktika-resheniya-zadach-optimizacii-na-python-2020-11-26'''
+df = pd.read_excel('C:\\Users\\oshurek_m\\Desktop\\Пеленг общий.xlsx', sheet_name='matmod')
+df.info()
+model = LpProblem('prod', LpMaximize)
+names_det = list(df['Наименование детали'])
+costs = dict(zip(names_det, df['Стоимость, $']))
+print(costs)
+'''https://proglib.io/p/lineynoe-programmirovanie-praktika-resheniya-zadach-optimizacii-na-python-2020-11-26
+https://www.machinelearningmastery.ru/linear-programming-and-discrete-optimization-with-python-using-pulp-449f3c5f6e99/'''
