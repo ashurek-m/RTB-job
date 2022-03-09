@@ -51,10 +51,13 @@ for v in model.variables():
     var_list_2.append(v.varValue)
     var_list.append(var_list_2)
 
-df_var = pd.DataFrame(data=var_list, columns=['var_name', 'var'])
-df_var.info()
-cost_df.info()
-#df_ex = df_var.merge(cost_df, how='outer', on='re_name')
-#save_excel('C:\\Users\\oshurek_m\\Desktop\\matmod.xlsx', df_ex)
+df_var = pd.DataFrame(data=var_list, columns=['re_name', 'var'])
+print(df_var.head())
+print(cost_df.head())
+df = df_var.merge(cost_df, on='re_name', how='outer')
+print(df.head())
+
+save_excel('C:\\Users\\oshurek_m\\Desktop\\matmod.xlsx', df)
+
 '''https://proglib.io/p/lineynoe-programmirovanie-praktika-resheniya-zadach-optimizacii-na-python-2020-11-26
 https://www.machinelearningmastery.ru/linear-programming-and-discrete-optimization-with-python-using-pulp-449f3c5f6e99/'''
