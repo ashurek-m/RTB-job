@@ -29,10 +29,10 @@ def file_search(way, name):
     way_list_xlsx = glob.glob(
         'W:\\Theoretical Planning\\02 - Бланки заказов (All foto cmd)\\**\\*.xlsx',
         recursive=True)
-    name1 = "C:\\Python's_project\\RTB-job\\отгрузочные часы\\new_general_address_file2021(xlsx).csv"
+    name1 = "C:\\Python's_project\\RTB-job\\отгрузочные часы\\new_general_address_file2022(xlsx).csv"
     csv_writer_spisok(way_list_xlsx, name1)
     '''
-    return [name, 'new_general_address_file2021(xlsx).csv']
+    return [name, 'new_general_address_file2022(xlsx).csv']
 
 
 def search_by_client(address_file, year):

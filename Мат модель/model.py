@@ -55,7 +55,6 @@ df_var = pd.DataFrame(data=var_list, columns=['re_name', 'var'])
 print(df_var.head())
 print(cost_df.head())
 df = df_var.merge(cost_df, on='re_name', how='outer')
-print(df.head())
 
 save_excel('C:\\Users\\oshurek_m\\Desktop\\matmod.xlsx', df)
 
