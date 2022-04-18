@@ -15,7 +15,7 @@ df_2.info()
 # величина смены в часах
 b = 8 * 0.8
 # кол-во смен в месяце
-c = 42
+c = 20
 model = LpProblem('prod', LpMaximize)
 names_det = list(df_2['N° ITEM'])
 print(len(names_det))
@@ -39,16 +39,20 @@ for k in vat:
 cost_df = cost_df.assign(re_name=cost_2)
 
 model += lpSum(costs[i]*vat[i] for i in names_det)
-t_cn = 350
-t_dart = 20
-t_tour = 100
-model += lpSum(cn[i]*vat[i] for i in names_det) <= 350
-model += lpSum(dart[i]*vat[i] for i in names_det) <= 20
-model += lpSum(tour[i]*vat[i] for i in names_det) <= 100
+t_cn = 979
+t_dart = 536
+t_tour = 719
+count_cn = 12
+count_dart = 12
+count_tour = 8
+model += lpSum(cn[i]*vat[i] for i in names_det) <= t_cn
+model += lpSum(dart[i]*vat[i] for i in names_det) <= t_dart
+model += lpSum(tour[i]*vat[i] for i in names_det) <= t_tour
 for i in names_det:
-    model += (cn[i]*vat[i]) <= c * b
-    model += (dart[i]*vat[i]) <= c * b
-    model += (tour[i]*vat[i]) <= c * b
+    model += ((cn[i] + dart[i] + tour[i])*vat[i]) <= c * b
+model += lpSum(cn[i]*vat[i] for i in names_det) <= c * b * count_cn
+model += lpSum(dart[i]*vat[i] for i in names_det) <= c * b * count_dart
+model += lpSum(tour[i]*vat[i] for i in names_det) <= c * b * count_tour
 model.solve()
 var_list = []
 print("Status:", LpStatus[model.status])
@@ -58,8 +62,8 @@ for v in model.variables():
     var_list.append(var_list_2)
 
 df_var = pd.DataFrame(data=var_list, columns=['re_name', 'var'])
-print(df_var.head())
-print(cost_df.head())
+# print(df_var.head())
+# print(cost_df.head())
 df = df_var.merge(cost_df, on='re_name', how='outer')
 
 save_excel('C:\\Users\\oshurek_m\\Desktop\\matmod.xlsx', df)
