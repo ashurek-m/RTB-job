@@ -15,7 +15,7 @@ df_2.info()
 # величина смены в часах
 b = 8 * 0.8
 # кол-во смен в месяце
-c = 20
+c = 10
 model = LpProblem('prod', LpMaximize)
 names_det = list(df_2['N° ITEM'])
 print(len(names_det))
@@ -39,12 +39,12 @@ for k in vat:
 cost_df = cost_df.assign(re_name=cost_2)
 
 model += lpSum(costs[i]*vat[i] for i in names_det)
-t_cn = 979
-t_dart = 536
-t_tour = 719
-count_cn = 12
-count_dart = 12
-count_tour = 8
+t_cn = 579
+t_dart = 191
+t_tour = 118
+count_cn = 10
+count_dart = 10
+count_tour = 6
 model += lpSum(cn[i]*vat[i] for i in names_det) <= t_cn
 model += lpSum(dart[i]*vat[i] for i in names_det) <= t_dart
 model += lpSum(tour[i]*vat[i] for i in names_det) <= t_tour
