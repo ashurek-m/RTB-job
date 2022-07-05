@@ -40,17 +40,17 @@ for k in vat:
 cost_df = cost_df.assign(re_name=cost_2)
 
 model += lpSum(costs[i]*vat[i] for i in names_det)
-t_cn = 1384.2 / 3
-t_dart = 256.5 / 3
-t_tour = 530.1 / 3
+t_cn = 3400 / 4
+t_dart = 2000 / 4
+t_tour = 2500 / 4
 '''
 количество центров 18шт
 количество дартов 16шт
 количество токарных 9 шт
 '''
-count_cn = 10
-count_dart = 9
-count_tour = 4
+count_cn = 18
+count_dart = 15
+count_tour = 9
 model += lpSum(cn[i]*vat[i] for i in names_det) <= t_cn
 model += lpSum(dart[i]*vat[i] for i in names_det) <= t_dart
 model += lpSum(tour[i]*vat[i] for i in names_det) <= t_tour
